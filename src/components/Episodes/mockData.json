@@ -1,0 +1,776 @@
+{
+  "settings": { "ipAddress": "10.0.0.91", "port": "9899" },
+  "episodes": [
+    {
+      "_id": "dd224799-f4e9-48d1-ac92-5e867ad3caba",
+      "active": true,
+      "airDate": "2022-11-24",
+      "current": false,
+      "hosts": [
+        { "seatNum": 1, "_id": "df341de1-19bf-48b5-bd22-dcf71dc9ddbd" },
+        { "seatNum": 2, "_id": "7ca9320f-a7cf-4e90-af01-1abb90fbb3fa" }
+      ],
+      "name": "the champ is here",
+      "number": "2",
+      "socialNetworks": [
+        { "order": 1, "_id": "44de5493-3acd-4c3d-ae13-916abc1d8bb5" },
+        { "order": 2, "_id": "d46b3ffc-5e40-471a-acce-e433e304e8ce" }
+      ],
+      "templateId": "615cac89b26a27ffe0b100b8",
+      "ticker": [
+        {
+          "_id": "980bc017-7f2e-4c10-b72c-be097808ecea",
+          "title": "",
+          "text": "2"
+        },
+        {
+          "_id": "f16fd5bb-a284-4a48-b694-71526c89bc1b",
+          "title": "",
+          "text": "3"
+        }
+      ],
+      "topics": [
+        {
+          "_id": "f6551b18-ff16-4d50-8b2e-e8b66fcc9889",
+          "order": 1,
+          "name": "New Topic 01",
+          "desc": "Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": "b1b105cd-5b5c-4cfc-b8aa-80f0c9d47998.jpg"
+        },
+        {
+          "_id": "b582f5f5-6a67-400d-abf2-7913dad5199b",
+          "order": "3",
+          "name": "New Topic 03",
+          "desc": "Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": ""
+        },
+        {
+          "_id": "24b5223a-6d03-472a-9175-5c14126b2be4",
+          "order": "2",
+          "name": "New Topic 02",
+          "desc": "Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "f6551b18-ff16-4d50-8b2e-e8b66fcc9889",
+          "img": "a6fe60ed-c7fa-4b4e-9e38-d0a261a3a691.jpg"
+        }
+      ]
+    },
+    {
+      "_id": "d6bfebe6-aa08-44c8-8128-03800db570ad",
+      "active": true,
+      "airDate": "2022-11-30",
+      "current": false,
+      "hosts": [
+        { "seatNum": 1, "_id": "7ca9320f-a7cf-4e90-af01-1abb90fbb3fa" },
+        { "seatNum": 2, "_id": "8dd44526-cd08-45bc-a19d-7db791567600" }
+      ],
+      "name": "PTI Current Go Go Go",
+      "number": "2",
+      "socialNetworks": [
+        { "order": 1, "_id": "d46b3ffc-5e40-471a-acce-e433e304e8ce" },
+        { "order": 2, "_id": "44de5493-3acd-4c3d-ae13-916abc1d8bb5" }
+      ],
+      "templateId": "615cac89b26a27ffe0b100b8",
+      "ticker": [
+        {
+          "_id": "efc99123-ccd8-477c-981c-52e288487eb6",
+          "title": "",
+          "text": "001"
+        },
+        {
+          "_id": "b73b7a25-9151-4522-b37a-fad7afa95a74",
+          "title": "",
+          "text": "003"
+        },
+        {
+          "_id": "5286aa88-d405-4714-bbc2-97eadaa7dc2f",
+          "title": "",
+          "text": "005"
+        }
+      ],
+      "topics": [
+        {
+          "_id": "c362184c-456d-41f1-9aaa-74930e810e16",
+          "order": 1,
+          "name": "New Topic 001s boom",
+          "desc": "001 Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": "6be70ecc-9216-4ae0-b00b-f703aa14177c.jpg"
+        },
+        {
+          "_id": "031e9390-7817-4113-bc10-fda189d28e45",
+          "order": 2,
+          "name": "New Topic 002 Parent",
+          "desc": "002 Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": true,
+          "isChild": false,
+          "parentId": "",
+          "img": "70f39c33-548c-45a9-816b-b49820f6842d.jpg"
+        },
+        {
+          "_id": "1c9d0e30-7aa6-415c-843b-b309771a2e1c",
+          "order": 3,
+          "name": "New Topic 003 Child 1520x120",
+          "desc": "003 Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": "50",
+          "isParent": false,
+          "isChild": true,
+          "parentId": "031e9390-7817-4113-bc10-fda189d28e45",
+          "img": "7b067c07-e2be-4d91-9f53-0222bc28862c.jpg"
+        },
+        {
+          "_id": "a15989e1-2825-487c-9227-6abd37a2dcbe",
+          "order": 4,
+          "name": "New Topic 004 Child",
+          "desc": "004 Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": true,
+          "parentId": "031e9390-7817-4113-bc10-fda189d28e45",
+          "img": "d9f1fb33-195d-4798-8b01-9164e20579db.jpg"
+        },
+        {
+          "_id": "c0afc019-a25e-45b9-8d8f-9194c50b1524",
+          "order": 5,
+          "name": "New Topic 005",
+          "desc": "005 Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": "a58973fd-1faf-44a1-8e14-52392a7e2d1d.jpg"
+        },
+        {
+          "_id": "e0c14d62-9164-401d-99b3-c7dffb5d07b1",
+          "order": 6,
+          "name": "006",
+          "desc": "Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": ""
+        },
+        {
+          "_id": "9164ab87-dfe9-4819-8121-0fd59d80f6be",
+          "order": 7,
+          "name": "007",
+          "desc": "Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": ""
+        },
+        {
+          "_id": "b93cc921-6dec-4f09-9e4a-7f5cdf252639",
+          "order": 8,
+          "name": "008",
+          "desc": "Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": ""
+        },
+        {
+          "_id": "231b8a65-9da5-4b7a-ab66-969900ba55c9",
+          "order": 9,
+          "name": "New Topic",
+          "desc": "Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": ""
+        },
+        {
+          "_id": "3c092739-d3f9-41a3-a9fa-6bf6619afd3c",
+          "order": 10,
+          "name": "New Topic",
+          "desc": "Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": ""
+        },
+        {
+          "_id": "cb458681-b913-4da1-bc92-25c6e8be14ec",
+          "order": 11,
+          "name": "New Topic",
+          "desc": "Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": ""
+        },
+        {
+          "_id": "bbe3773e-2c22-4e26-bb34-83f08494ccce",
+          "order": 12,
+          "name": "New Topic",
+          "desc": "Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": ""
+        },
+        {
+          "_id": "d31f231a-397c-4c1b-b3df-5bb70e8c63c7",
+          "order": 13,
+          "name": "New Topic",
+          "desc": "Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": ""
+        },
+        {
+          "_id": "af0d8750-0d30-47db-942f-7ab4a831b214",
+          "order": 14,
+          "name": "New Topic",
+          "desc": "Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": ""
+        }
+      ]
+    },
+    {
+      "_id": "462922fc-a690-4b8a-adb9-456aef6b1542",
+      "active": true,
+      "airDate": "2022-12-15",
+      "current": false,
+      "hosts": [],
+      "name": "topic testing",
+      "number": 88,
+      "socialNetworks": [],
+      "templateId": "615de8a8b587713cb80b01af",
+      "ticker": [],
+      "topics": []
+    },
+    {
+      "_id": "34b35515-7334-4883-b463-3811e60e0380",
+      "active": true,
+      "airDate": "1213",
+      "current": false,
+      "hosts": [],
+      "name": "PTI",
+      "number": "1",
+      "socialNetworks": [
+        { "order": 1, "_id": "d46b3ffc-5e40-471a-acce-e433e304e8ce" }
+      ],
+      "templateId": "615cac89b26a27ffe0b100b8",
+      "ticker": [],
+      "topics": [
+        {
+          "_id": "c075223d-b910-49c1-97e3-a74566fc3767",
+          "order": 1,
+          "name": "001",
+          "desc": "Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": ""
+        },
+        {
+          "_id": "d0fd259c-8223-4953-84e4-22c183e81972",
+          "order": 2,
+          "name": "002",
+          "desc": "Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": ""
+        },
+        {
+          "_id": "94b97b0e-896d-4943-a4dd-a752e9ab65c3",
+          "order": 3,
+          "name": "003",
+          "desc": "Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": ""
+        }
+      ]
+    },
+    {
+      "_id": "7e82b20a-00fc-4cfb-94fb-a4011fd74941",
+      "active": true,
+      "airDate": "2022-12-29",
+      "current": true,
+      "contentBoxes": [
+        {
+          "img": "",
+          "title": "ssssssssssssssss",
+          "text": "111111111111111111111"
+        },
+        {
+          "img": "da0aa812-620b-4255-a0bb-1bd938cf6e12.jpg",
+          "title": "bbbbbb",
+          "text": "222222222222222"
+        },
+        { "img": "", "title": "ccccc", "text": "333333333333333" }
+      ],
+      "hosts": [
+        { "seatNum": 1, "_id": "df341de1-19bf-48b5-bd22-dcf71dc9ddbd" },
+        { "seatNum": 2, "_id": "7ca9320f-a7cf-4e90-af01-1abb90fbb3fa" },
+        { "seatNum": 3, "_id": "4d4fb343-1104-46b9-a7e7-8d8cd8edf423" }
+      ],
+      "name": "CNN Episode Name",
+      "number": "22",
+      "socialNetworks": [
+        { "order": 1, "_id": "d46b3ffc-5e40-471a-acce-e433e304e8ce" },
+        { "order": 2, "_id": "44de5493-3acd-4c3d-ae13-916abc1d8bb5" },
+        { "order": 3, "_id": "220895ef-0479-44d2-89da-f6f9a606beaa" }
+      ],
+      "templateId": "615de8a8b587713cb80b01af",
+      "ticker": [
+        {
+          "_id": "79e4eb9e-2771-4e6c-be11-6b2f3cf0553b",
+          "title": "1",
+          "text": "2"
+        },
+        {
+          "_id": "7879668d-bdbd-4850-877b-8bb458ae2f94",
+          "title": "3",
+          "text": "4"
+        },
+        {
+          "_id": "3fec9fd6-bb1c-43c4-a745-59b253411923",
+          "title": "5",
+          "text": "6"
+        }
+      ],
+      "topics": [
+        {
+          "_id": "71ddeebe-559a-49f8-9b17-17cbb5702a23",
+          "order": 0,
+          "name": "Working on Stream Stuff!",
+          "desc": "Custom Software and Overlays!",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": ""
+        }
+      ]
+    },
+    {
+      "_id": "68e9471a-5d30-46d7-8bb9-8ad513e70585",
+      "active": true,
+      "airDate": "2022-12-01",
+      "current": true,
+      "hosts": [
+        { "seatNum": 1, "_id": "df341de1-19bf-48b5-bd22-dcf71dc9ddbd" },
+        { "seatNum": 2, "_id": "4d4fb343-1104-46b9-a7e7-8d8cd8edf423" }
+      ],
+      "name": "BNN Test",
+      "number": "1",
+      "socialNetworks": [
+        { "order": 1, "_id": "d46b3ffc-5e40-471a-acce-e433e304e8ce" },
+        { "order": 2, "_id": "220895ef-0479-44d2-89da-f6f9a606beaa" }
+      ],
+      "templateId": "bnn",
+      "ticker": [
+        {
+          "_id": "83878619-872b-41b0-8c0a-1a8aa0867497",
+          "title": "Icon is Back",
+          "text": "Don't forget to follow!"
+        },
+        {
+          "_id": "1a3782c1-d34a-4928-b810-6c9a330cf787",
+          "title": "bam",
+          "text": "booom"
+        },
+        {
+          "_id": "f95ff4c2-54dc-49d7-a53b-4cc4bf495c6c",
+          "title": "time",
+          "text": "for some action"
+        }
+      ],
+      "topics": [
+        {
+          "_id": "024ff598-d454-48d4-8ae1-386b5f026a13",
+          "order": 1,
+          "name": "Dems vs Republicans",
+          "desc": "They are both bad",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": ""
+        },
+        {
+          "_id": "31e6fa27-5e25-4f75-ad7e-ce1e35a7295d",
+          "order": 2,
+          "name": "New Topic",
+          "desc": "Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": ""
+        }
+      ]
+    },
+    {
+      "_id": "f7e982e0-cd06-4541-aa56-063c5ec1461d",
+      "active": true,
+      "airDate": "1213",
+      "current": false,
+      "hosts": [],
+      "name": "add topic",
+      "number": 88,
+      "socialNetworks": [],
+      "templateId": "615de8a8b587713cb80b01af",
+      "ticker": [],
+      "topics": [
+        {
+          "_id": "1bd2124f-735e-4c30-ad69-236f7bcb98c8",
+          "order": 1,
+          "name": "New Topic",
+          "desc": "Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": ""
+        }
+      ]
+    },
+    {
+      "_id": "009ec23d-a85e-4038-8325-6e0b5b7d7859",
+      "active": true,
+      "airDate": "2023-01-06",
+      "current": true,
+      "hosts": [
+        { "seatNum": 1, "_id": "df341de1-19bf-48b5-bd22-dcf71dc9ddbd" }
+      ],
+      "name": "New Ep New Temp",
+      "number": "44",
+      "socialNetworks": [],
+      "templateId": "36e71058-6903-4947-aceb-77e128a54115",
+      "ticker": [],
+      "topics": [
+        {
+          "_id": "a7482bd9-dfd3-4205-b769-02d0d03f0228",
+          "order": 0,
+          "name": "New Topic",
+          "desc": "Lorem ipsum dolor sit amet consectetu. Dolore perspiciatis cum id, repellat nobis quisquam enim in?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": ""
+        }
+      ],
+      "contentBoxes": [
+        {
+          "img": "7ab99dca-5c8f-46aa-a555-455b95a3897b.jpg",
+          "title": "001",
+          "text": ""
+        },
+        { "img": "", "title": "", "text": "" },
+        {
+          "img": "e755e9ca-282c-4bcd-8162-dbe5faf1f13b.jpg",
+          "title": "",
+          "text": ""
+        }
+      ]
+    },
+    {
+      "_id": "3a535e12-bf87-4ba6-9f06-35df7a7f68bf",
+      "active": true,
+      "airDate": "2023-02-11",
+      "current": true,
+      "hosts": [
+        { "seatNum": 1, "_id": "df341de1-19bf-48b5-bd22-dcf71dc9ddbd" },
+        { "seatNum": 2, "_id": "7ca9320f-a7cf-4e90-af01-1abb90fbb3fa" },
+        { "seatNum": 3, "_id": "279c6d7d-b9ef-4c52-bcf9-c21fd7fa14ed" }
+      ],
+      "name": "Casual Con Ep1",
+      "number": "1",
+      "socialNetworks": [],
+      "templateId": "615cac89b26a27ffe0b100b8",
+      "ticker": [
+        {
+          "_id": "03cabe81-b031-4666-8ac8-398e0eea9ff3",
+          "title": "",
+          "text": "go go go"
+        },
+        {
+          "_id": "9e012c90-f3a1-4086-ac63-0ff4cca23bad",
+          "title": "",
+          "text": "bye bye bye"
+        }
+      ],
+      "topics": [
+        {
+          "_id": "c6d47f76-8f3e-4ad2-977a-c8ac376788f1",
+          "order": 0,
+          "name": "Welcome to the Shakedown",
+          "desc": "Allow me to re-introduce myself!",
+          "timer": "500",
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": "e3177214-e93b-4ae1-b965-c615afb55cf7.jpg"
+        },
+        {
+          "_id": "0b4c991c-df42-4d6f-b101-11d3747e7c8e",
+          "order": 1,
+          "name": "Disputed Character Traits?",
+          "desc": "What character trait do your friends say you have, but you disagree with?",
+          "timer": "300",
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": "94d46b7b-ac5f-4aac-962d-1649d2895d9f.jpg"
+        },
+        {
+          "_id": "fdc8cfb4-ec5d-4e66-9533-f99eee5a22d5",
+          "order": 2,
+          "name": "College VS The Google",
+          "desc": "Knowing what you know now, would you choose google over college?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": "d7135767-0381-4e63-9250-02ec0b7e87ca.jpg"
+        },
+        {
+          "_id": "104f65af-5917-4f85-abe5-00b047c61f23",
+          "order": "6",
+          "name": "Chicken Wing Lady!",
+          "desc": "Did she really steal 1.4 million in chicken wings?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": "d0d6fa50-d31d-4fef-95bd-7427ffd0177c.jpg"
+        },
+        {
+          "_id": "71907ec3-3986-4f90-94c2-f2086aab2818",
+          "order": 4,
+          "name": "Do We Care?",
+          "desc": "Do We Care? The Kiss.",
+          "timer": 0,
+          "isParent": true,
+          "isChild": false,
+          "parentId": "",
+          "img": "26bb55ec-6ca0-494f-a3bc-a99e74dc67db.jpg"
+        },
+        {
+          "_id": "8f9442b0-d0e9-4d20-93f3-9d893db66b48",
+          "order": 5,
+          "name": "Presidential Kissing!",
+          "desc": "Do We Care? Dr. Biden kissing the husband of the vice president!",
+          "timer": 0,
+          "isParent": false,
+          "isChild": true,
+          "parentId": "71907ec3-3986-4f90-94c2-f2086aab2818",
+          "img": "66c0d183-5ee0-4f45-8398-430b899f32c7.jpg"
+        },
+        {
+          "_id": "03f4d4bf-e724-4ab9-96b9-a632195d561a",
+          "order": 7,
+          "name": " Whitney Wanna Dance!",
+          "desc": "Do We Care? Whitney Houston biopic portrayed her to have had a long term lesbian relationship!",
+          "timer": 0,
+          "isParent": false,
+          "isChild": true,
+          "parentId": "71907ec3-3986-4f90-94c2-f2086aab2818",
+          "img": "5fa3f3c6-4eb3-4b44-a092-2289f71be037.jpg"
+        },
+        {
+          "_id": "dc4fed7b-7c33-4b69-9575-b23753f0bc4c",
+          "order": 8,
+          "name": "King James: Scoring Champ",
+          "desc": "Do we care? Lebron James is now the NBA all time scoring leader!",
+          "timer": 0,
+          "isParent": false,
+          "isChild": true,
+          "parentId": "71907ec3-3986-4f90-94c2-f2086aab2818",
+          "img": "f5cf62b0-f416-4c3a-8e74-3ab9f814badb.jpg"
+        },
+        {
+          "_id": "067ef348-86c8-4e35-94b9-21d552468b5a",
+          "order": 9,
+          "name": "Bullying Builds Character",
+          "desc": "Does bullying and or being bullied build character?",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": "49a22325-6b17-4534-ab60-1573558fd15a.jpg"
+        },
+        {
+          "_id": "7eb0fe09-e300-415f-8779-5eb58b4b303b",
+          "order": 10,
+          "name": "True or False: BWB",
+          "desc": "True or False: Banking while Black. Man wins case against the police and then the bank that would not accept the settlement check.",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": "a8448a6e-0f49-4be6-ab36-9be4d490469b.jpg"
+        },
+        {
+          "_id": "fd075d30-43ee-4e4f-abbe-7c8defad5110",
+          "order": 11,
+          "name": "Good Bye for Now!",
+          "desc": "Wrap it up!",
+          "timer": 0,
+          "isParent": false,
+          "isChild": false,
+          "parentId": "",
+          "img": ""
+        }
+      ],
+      "contentBoxes": [],
+      "sponsorBoxes": []
+    }
+  ],
+  "hosts": [
+    {
+      "_id": "df341de1-19bf-48b5-bd22-dcf71dc9ddbd",
+      "name": "Eugene Bey",
+      "socials": []
+    },
+    {
+      "_id": "7ca9320f-a7cf-4e90-af01-1abb90fbb3fa",
+      "name": "Shake",
+      "socials": [
+        {
+          "_id": "f3425dfc-a65a-4a55-a9eb-633d4db522d0",
+          "site": "abc",
+          "username": "def"
+        }
+      ]
+    },
+    {
+      "_id": "8dd44526-cd08-45bc-a19d-7db791567600",
+      "name": "Wookie",
+      "socials": []
+    },
+    {
+      "_id": "4d4fb343-1104-46b9-a7e7-8d8cd8edf423",
+      "name": "Hero Rocks",
+      "socials": []
+    },
+    {
+      "_id": "279c6d7d-b9ef-4c52-bcf9-c21fd7fa14ed",
+      "name": "Llemsos",
+      "socials": []
+    }
+  ],
+  "socials": [
+    {
+      "_id": "d46b3ffc-5e40-471a-acce-e433e304e8ce",
+      "site": "Tweet",
+      "username": "iConGaming"
+    },
+    {
+      "_id": "44de5493-3acd-4c3d-ae13-916abc1d8bb5",
+      "site": "abc",
+      "username": "def"
+    },
+    {
+      "_id": "220895ef-0479-44d2-89da-f6f9a606beaa",
+      "site": "Discord",
+      "username": "iConCodes"
+    }
+  ],
+  "templates": [
+    {
+      "_id": "615cac89b26a27ffe0b100b8",
+      "name": "PTI: Pardon the Interruption",
+      "maxHosts": 3,
+      "tickerType": 1,
+      "topicType": 3,
+      "hasSponsor": false,
+      "hasContentBox": false,
+      "images": {
+        "contentBox": { "amount": 0, "width": 200, "height": 200 },
+        "logo": { "amount": 1, "width": 400, "height": 220 },
+        "sponsor": { "amount": 0, "width": 400, "height": 120 },
+        "topic": { "amount": 0, "width": 400, "height": 220 }
+      },
+      "url": "http://localhost:9899/overlays",
+      "localDir": "PTI"
+    },
+    {
+      "_id": "615de8a8b587713cb80b01af",
+      "name": "CNN: Cable News Network",
+      "maxHosts": 3,
+      "tickerType": 2,
+      "topicType": 1,
+      "hasSponsor": false,
+      "hasContentBox": true,
+      "images": {
+        "contentBox": { "amount": 3, "width": 340, "height": 200 },
+        "logo": { "amount": 1, "width": 185, "height": 95 },
+        "sponsors": { "amount": 0, "width": 0, "height": 0 },
+        "topic": { "amount": 0, "width": 230, "height": 135 }
+      },
+      "url": "http://localhost:9899/overlays",
+      "localDir": "CNN"
+    },
+    {
+      "_id": "bnn",
+      "name": "BNN: Black News Network",
+      "maxHosts": 3,
+      "tickerType": 2,
+      "topicType": 3,
+      "hasSponsor": true,
+      "hasContentBox": false,
+      "images": {
+        "contentBox": { "amount": 0, "width": 200, "height": 200 },
+        "logo": { "amount": 1, "width": 230, "height": 135 },
+        "sponsors": { "amount": 0, "width": 0, "height": 0 },
+        "topic": { "amount": 0, "width": 230, "height": 135 }
+      },
+      "url": "http://localhost:9899/overlays",
+      "localDir": "BNN"
+    },
+    {
+      "_id": "36e71058-6903-4947-aceb-77e128a54115",
+      "name": "Add Images contentBox",
+      "maxHosts": 1,
+      "tickerType": 1,
+      "topicType": 1,
+      "hasSponsor": true,
+      "hasContentBox": true,
+      "images": {
+        "contentBox": { "amount": 3, "width": 200, "height": 200 },
+        "logo": { "amount": 1, "width": 200, "height": 200 },
+        "sponsors": { "amount": 5, "width": 120, "height": 10 },
+        "topic": { "amount": 0, "width": 0, "height": 0 }
+      }
+    }
+  ]
+}

@@ -1,0 +1,152 @@
+{
+  "_id": "3a535e12-bf87-4ba6-9f06-35df7a7f68bf",
+  "active": true,
+  "airDate": "2023-02-11",
+  "current": true,
+  "hosts": [
+    { "seatNum": 1, "_id": "df341de1-19bf-48b5-bd22-dcf71dc9ddbd" },
+    { "seatNum": 2, "_id": "7ca9320f-a7cf-4e90-af01-1abb90fbb3fa" },
+    { "seatNum": 3, "_id": "279c6d7d-b9ef-4c52-bcf9-c21fd7fa14ed" }
+  ],
+  "name": "Casual Con Ep1",
+  "number": "1",
+  "socialNetworks": [],
+  "templateId": "615cac89b26a27ffe0b100b8",
+  "ticker": [
+    {
+      "_id": "03cabe81-b031-4666-8ac8-398e0eea9ff3",
+      "title": "",
+      "text": "go go go"
+    },
+    {
+      "_id": "9e012c90-f3a1-4086-ac63-0ff4cca23bad",
+      "title": "",
+      "text": "bye bye bye"
+    }
+  ],
+  "topics": [
+    {
+      "_id": "c6d47f76-8f3e-4ad2-977a-c8ac376788f1",
+      "order": 0,
+      "name": "Welcome to the Shakedown",
+      "desc": "Allow me to re-introduce myself!",
+      "timer": "500",
+      "isParent": false,
+      "isChild": false,
+      "parentId": "",
+      "img": "e3177214-e93b-4ae1-b965-c615afb55cf7.jpg"
+    },
+    {
+      "_id": "0b4c991c-df42-4d6f-b101-11d3747e7c8e",
+      "order": 1,
+      "name": "Disputed Character Traits?",
+      "desc": "What character trait do your friends say you have, but you disagree with?",
+      "timer": "300",
+      "isParent": false,
+      "isChild": false,
+      "parentId": "",
+      "img": "94d46b7b-ac5f-4aac-962d-1649d2895d9f.jpg"
+    },
+    {
+      "_id": "fdc8cfb4-ec5d-4e66-9533-f99eee5a22d5",
+      "order": 2,
+      "name": "College VS The Google",
+      "desc": "Knowing what you know now, would you choose google over college?",
+      "timer": 0,
+      "isParent": false,
+      "isChild": false,
+      "parentId": "",
+      "img": "d7135767-0381-4e63-9250-02ec0b7e87ca.jpg"
+    },
+    {
+      "_id": "104f65af-5917-4f85-abe5-00b047c61f23",
+      "order": "6",
+      "name": "Chicken Wing Lady!",
+      "desc": "Did she really steal 1.4 million in chicken wings?",
+      "timer": 0,
+      "isParent": false,
+      "isChild": false,
+      "parentId": "",
+      "img": "d0d6fa50-d31d-4fef-95bd-7427ffd0177c.jpg"
+    },
+    {
+      "_id": "71907ec3-3986-4f90-94c2-f2086aab2818",
+      "order": 4,
+      "name": "Do We Care?",
+      "desc": "Do We Care? The Kiss.",
+      "timer": 0,
+      "isParent": true,
+      "isChild": false,
+      "parentId": "",
+      "img": "26bb55ec-6ca0-494f-a3bc-a99e74dc67db.jpg"
+    },
+    {
+      "_id": "8f9442b0-d0e9-4d20-93f3-9d893db66b48",
+      "order": 5,
+      "name": "Presidential Kissing!",
+      "desc": "Do We Care? Dr. Biden kissing the husband of the vice president!",
+      "timer": 0,
+      "isParent": false,
+      "isChild": true,
+      "parentId": "71907ec3-3986-4f90-94c2-f2086aab2818",
+      "img": "66c0d183-5ee0-4f45-8398-430b899f32c7.jpg"
+    },
+    {
+      "_id": "03f4d4bf-e724-4ab9-96b9-a632195d561a",
+      "order": 7,
+      "name": " Whitney Wanna Dance!",
+      "desc": "Do We Care? Whitney Houston biopic portrayed her to have had a long term lesbian relationship!",
+      "timer": 0,
+      "isParent": false,
+      "isChild": true,
+      "parentId": "71907ec3-3986-4f90-94c2-f2086aab2818",
+      "img": "5fa3f3c6-4eb3-4b44-a092-2289f71be037.jpg"
+    },
+    {
+      "_id": "dc4fed7b-7c33-4b69-9575-b23753f0bc4c",
+      "order": 8,
+      "name": "King James: Scoring Champ",
+      "desc": "Do we care? Lebron James is now the NBA all time scoring leader!",
+      "timer": 0,
+      "isParent": false,
+      "isChild": true,
+      "parentId": "71907ec3-3986-4f90-94c2-f2086aab2818",
+      "img": "f5cf62b0-f416-4c3a-8e74-3ab9f814badb.jpg"
+    },
+    {
+      "_id": "067ef348-86c8-4e35-94b9-21d552468b5a",
+      "order": 9,
+      "name": "Bullying Builds Character",
+      "desc": "Does bullying and or being bullied build character?",
+      "timer": 0,
+      "isParent": false,
+      "isChild": false,
+      "parentId": "",
+      "img": "49a22325-6b17-4534-ab60-1573558fd15a.jpg"
+    },
+    {
+      "_id": "7eb0fe09-e300-415f-8779-5eb58b4b303b",
+      "order": 10,
+      "name": "True or False: BWB",
+      "desc": "True or False: Banking while Black. Man wins case against the police and then the bank that would not accept the settlement check.",
+      "timer": 0,
+      "isParent": false,
+      "isChild": false,
+      "parentId": "",
+      "img": "a8448a6e-0f49-4be6-ab36-9be4d490469b.jpg"
+    },
+    {
+      "_id": "fd075d30-43ee-4e4f-abbe-7c8defad5110",
+      "order": 11,
+      "name": "Good Bye for Now!",
+      "desc": "Wrap it up!",
+      "timer": 0,
+      "isParent": false,
+      "isChild": false,
+      "parentId": "",
+      "img": ""
+    }
+  ],
+  "contentBoxes": [],
+  "sponsorBoxes": []
+}
