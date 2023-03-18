@@ -11,17 +11,19 @@ import { useNavigate } from "react-router-dom";
 import { AppRoutes, ISocials } from "../../../types";
 import httpService from "../../../utils/httpService";
 
+import socialMediaSites from "../../../config/socailMediaConfig.json";
+
 export interface ISocialNewProps {}
 
 export const SocialNew: React.FC<ISocialNewProps> = () => {
   const navigate = useNavigate();
 
   const [state, setState] = React.useState<Partial<ISocials>>({
-    site: "",
+    site: socialMediaSites[0],
     username: ""
   });
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: React.ChangeEvent<any>) => {
     const { name, value } = event.target;
     setState({ ...state, [name]: value });
   };
@@ -61,13 +63,13 @@ export const SocialNew: React.FC<ISocialNewProps> = () => {
             <Col>
               <Form.Group className="mb-3">
                 <Form.Label>Site</Form.Label>
-                <Form.Control
-                  size="sm"
-                  name="site"
-                  onChange={handleChange}
-                  type="text"
-                  value={state.site}
-                />
+                <Form.Select size="sm" name="site" onChange={handleChange}>
+                  {socialMediaSites.map((site: string) => (
+                    <option key={site} value={site}>
+                      {site}
+                    </option>
+                  ))}
+                </Form.Select>
               </Form.Group>
             </Col>
             <Col> </Col>
@@ -81,6 +83,7 @@ export const SocialNew: React.FC<ISocialNewProps> = () => {
                   size="sm"
                   name="username"
                   onChange={handleChange}
+                  placeholder="Username"
                   type="text"
                   value={state.username}
                 />

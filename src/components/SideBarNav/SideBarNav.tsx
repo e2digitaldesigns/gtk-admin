@@ -9,34 +9,48 @@ interface ISections {
   display: string;
   link: AppRoutes;
   SideBarIcon: Icons.Icon;
+  isChild?: boolean;
 }
 
 const SideBarNav: React.FC = () => {
   const { appState } = useAppData();
 
   const sections: ISections[] = [
-    {
-      display: "DashBoard",
-      link: AppRoutes.DashBoard,
-      SideBarIcon: Icons.Activity
-    },
-    { display: "Episodes", link: AppRoutes.Episodes, SideBarIcon: Icons.Tv },
-    { display: "Host", link: AppRoutes.Hosts, SideBarIcon: Icons.User },
-    {
-      display: "Social Networks",
-      link: AppRoutes.Socials,
-      SideBarIcon: Icons.Twitter
-    },
+    // {
+    //   display: "DashBoard",
+    //   link: AppRoutes.DashBoard,
+    //   SideBarIcon: Icons.Activity
+    // },
     {
       display: "Podcast Templates",
       link: AppRoutes.Templates,
       SideBarIcon: Icons.Box
     },
+
     {
-      display: "Stand Alones",
-      link: AppRoutes.Templates,
-      SideBarIcon: Icons.Sidebar
+      display: "Episodes",
+      link: AppRoutes.Episodes,
+      SideBarIcon: Icons.Tv,
+      isChild: true
+    },
+    {
+      display: "Host",
+      link: AppRoutes.Hosts,
+      SideBarIcon: Icons.User,
+      isChild: true
+    },
+    {
+      display: "Social Networks",
+      link: AppRoutes.Socials,
+      SideBarIcon: Icons.Twitter,
+      isChild: true
     }
+
+    // {
+    //   display: "Stand Alones",
+    //   link: AppRoutes.Templates,
+    //   SideBarIcon: Icons.Sidebar
+    // }
   ];
 
   return (
@@ -45,9 +59,9 @@ const SideBarNav: React.FC = () => {
 
       <Styled.SidebarNavItemDivider>Menu</Styled.SidebarNavItemDivider>
 
-      {sections.map(({ display, link, SideBarIcon }: ISections) => (
+      {sections.map(({ display, link, isChild, SideBarIcon }: ISections) => (
         <Link to={link} key={display}>
-          <Styled.SidebarNavItem>
+          <Styled.SidebarNavItem isChild={isChild}>
             <Styled.SidebarNavItemIcon>
               <SideBarIcon />
             </Styled.SidebarNavItemIcon>

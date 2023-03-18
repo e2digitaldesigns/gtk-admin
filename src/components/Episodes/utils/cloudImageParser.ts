@@ -1,4 +1,4 @@
-import { ITemplate } from "./../../../types/template";
+import { ITemplate } from "../../../types/podcast/template";
 
 export const TopicImageParser = (
   image: string | undefined,

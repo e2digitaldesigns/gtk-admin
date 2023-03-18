@@ -11,6 +11,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { AppRoutes, ISocials } from "../../../types";
 import httpService from "../../../utils/httpService";
 
+import socialMediaSites from "../../../config/socailMediaConfig.json";
+
 export interface ISocialProfileProps {}
 
 export const SocialProfile: React.FC<ISocialProfileProps> = () => {
@@ -43,7 +45,7 @@ export const SocialProfile: React.FC<ISocialProfileProps> = () => {
     };
   }, [id]);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleChange = (event: React.ChangeEvent<any>): void => {
     setState({
       ...state,
       [event.target.name]: event.target.value
@@ -105,13 +107,19 @@ export const SocialProfile: React.FC<ISocialProfileProps> = () => {
             <Col>
               <Form.Group className="mb-3">
                 <Form.Label>Site</Form.Label>
-                <Form.Control
+
+                <Form.Select
                   size="sm"
                   name="site"
                   onChange={handleChange}
-                  type="text"
                   value={state.site}
-                />
+                >
+                  {socialMediaSites.map((site: string) => (
+                    <option key={site} value={site}>
+                      {site}
+                    </option>
+                  ))}
+                </Form.Select>
               </Form.Group>
             </Col>
             <Col> </Col>
@@ -125,6 +133,7 @@ export const SocialProfile: React.FC<ISocialProfileProps> = () => {
                   size="sm"
                   name="username"
                   onChange={handleChange}
+                  placeholder="Username"
                   type="text"
                   value={state.username}
                 />

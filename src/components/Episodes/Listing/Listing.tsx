@@ -27,8 +27,6 @@ export const EpisodeListing: React.FC<IEpisodeListingProps> = () => {
         `${process.env.REACT_APP_REST_API}episodes`
       );
 
-      console.log(data);
-
       if (stillHere) {
         setEpisodes(data);
       }

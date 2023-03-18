@@ -80,8 +80,6 @@ export const HostProfile: React.FC<IHostProfileProps> = () => {
     );
     setState(newState);
 
-    console.log(newState);
-
     try {
       const { data } = await httpService.put(
         `${process.env.REACT_APP_REST_API}hosts/${id}`,

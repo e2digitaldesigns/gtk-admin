@@ -99,7 +99,7 @@ export const EpisodeSocials: React.FC<IEpisodeSocialProps> = ({
                   ),
                   social => (
                     <option value={social._id} key={social._id}>
-                      Seat {order} - {social.site} | {social.username}
+                      {social.site} | {social.username}
                     </option>
                   )
                 )}

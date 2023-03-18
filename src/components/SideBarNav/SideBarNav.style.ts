@@ -42,7 +42,10 @@ export const SidebarNavHeader = styled.div`
   color: ${fontColor};
 `;
 
-export const SidebarNavItem = styled.div`
+interface ISidebarNavItem {
+  isChild?: boolean;
+}
+export const SidebarNavItem = styled.div<ISidebarNavItem>`
   width: 100%;
   display: grid;
   grid-template-columns: 2rem 1fr;
@@ -51,6 +54,7 @@ export const SidebarNavItem = styled.div`
   height: 2.5rem;
   transition: all 0.5s;
   padding: 0 0.5rem;
+  padding-left: ${props => (props.isChild ? "1.25rem" : "0.5rem")};
   color: ${fontColor};
   :hover {
     background-color: ${bgColorHover};

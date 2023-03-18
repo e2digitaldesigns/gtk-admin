@@ -225,7 +225,18 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
       <Col lg={7}>
         <Card className="mb-3">
           <Card.Body>
-            <Accordion defaultActiveKey={[AccordionKeys.Topics]} alwaysOpen>
+            <Accordion defaultActiveKey={[AccordionKeys.Episode]} alwaysOpen>
+              <Accordion.Item eventKey={AccordionKeys.Episode}>
+                <Accordion.Header>Episode</Accordion.Header>
+                <Accordion.Body>
+                  <Episodic
+                    handleChange={handleChange}
+                    handleSubmit={handleSubmit}
+                    state={episodeState}
+                  />
+                </Accordion.Body>
+              </Accordion.Item>
+
               <Accordion.Item eventKey={AccordionKeys.Topics}>
                 <Accordion.Header>Topics</Accordion.Header>
                 <Accordion.Body>
@@ -248,17 +259,6 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
                       New Topic
                     </Button>
                   )}
-                </Accordion.Body>
-              </Accordion.Item>
-
-              <Accordion.Item eventKey={AccordionKeys.Episode}>
-                <Accordion.Header>Episode</Accordion.Header>
-                <Accordion.Body>
-                  <Episodic
-                    handleChange={handleChange}
-                    handleSubmit={handleSubmit}
-                    state={episodeState}
-                  />
                 </Accordion.Body>
               </Accordion.Item>
 

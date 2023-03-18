@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
 import { useNavigate } from "react-router-dom";
 import { AppRoutes } from "../../../types";
-import { ITemplate } from "./../../../types/template";
+import { ITemplate } from "../../../types/podcast/template";
 import NoResults from "../../Shared/NoResults";
 import httpService from "../../../utils/httpService";
 
