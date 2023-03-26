@@ -39,6 +39,7 @@ export const EpisodeTicker: React.FC<ITickerProps> = ({
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     handleChangeTicker(e, ticker._id)
                   }
+                  placeholder="Title"
                   type="text"
                   value={ticker.title}
                 />
@@ -49,6 +50,7 @@ export const EpisodeTicker: React.FC<ITickerProps> = ({
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   handleChangeTicker(e, ticker._id)
                 }
+                placeholder="Text"
                 type="text"
                 value={ticker.text}
               />
@@ -84,7 +86,7 @@ export const EpisodeTicker: React.FC<ITickerProps> = ({
             size="sm"
             onClick={handleAddTicker}
           >
-            New Social
+            New News Ticker
           </Button>
         </Col>
       </Row>

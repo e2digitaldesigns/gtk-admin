@@ -24,13 +24,19 @@ export const EpisodeProfileTopics: React.FC<IEpisodeProfileTopicsProps> = ({
   handleDeleteTopic,
   templateState
 }) => {
+  const topicCount = episodeTopics.length;
+
+  const showAdvancedOptions =
+    templateState.topicType === "advanced" ||
+    templateState.topicType === "video";
+
   return (
     <Col>
       <Card className="mb-3">
         <Card.Header>
           <div style={{ display: "grid", gridTemplateColumns: "1fr auto" }}>
             <div>Topics</div>
-            <Badge>{episodeTopics.length}</Badge>
+            <Badge>{topicCount}</Badge>
           </div>
         </Card.Header>
         <Card.Body>
@@ -40,13 +46,19 @@ export const EpisodeProfileTopics: React.FC<IEpisodeProfileTopicsProps> = ({
                 key={topic._id}
                 onClick={() => handleActivateTopic(topic._id)}
               >
-                <Styled.TopicGrid>
-                  <Styled.TopicGridImage>
-                    <img
-                      src={TopicImageParser(topic.img, templateState)}
-                      alt="pop"
-                    />
-                  </Styled.TopicGridImage>
+                <Styled.TopicGrid showImage={showAdvancedOptions}>
+                  {showAdvancedOptions && (
+                    <Styled.TopicGridImage>
+                      <img
+                        src={TopicImageParser(
+                          topic.img,
+                          templateState.images.topic.width,
+                          templateState.images.topic.height
+                        )}
+                        alt="pop"
+                      />
+                    </Styled.TopicGridImage>
+                  )}
                   <Styled.TopicGridText>
                     <div>
                       {topic.order} | {topic.name}
@@ -54,7 +66,9 @@ export const EpisodeProfileTopics: React.FC<IEpisodeProfileTopicsProps> = ({
                     <div>{topic.desc}</div>
                   </Styled.TopicGridText>
                   <Styled.TopicGridIcon>
-                    <Trash2 onClick={() => handleDeleteTopic(topic._id)} />
+                    {topicCount > 1 && (
+                      <Trash2 onClick={() => handleDeleteTopic(topic._id)} />
+                    )}
                   </Styled.TopicGridIcon>
                 </Styled.TopicGrid>
               </ListGroup.Item>

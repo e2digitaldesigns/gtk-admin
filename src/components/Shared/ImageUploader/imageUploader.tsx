@@ -1,24 +1,27 @@
 import React, { useState } from "react";
 import Dropzone from "react-dropzone";
 import { v4 as uuidv4 } from "uuid";
-import { TopicImageParser } from "../Episodes/utils/cloudImageParser";
+import { TopicImageParser } from "../../Episodes/utils/cloudImageParser";
 
 import Button from "react-bootstrap/Button";
 import ProgressBar from "react-bootstrap/ProgressBar";
-import { ITemplate } from "../../types";
+import { ITemplate } from "../../../types";
+import * as Styled from "./imageUploader.styles";
 
 interface IntImageUploader {
   img: string;
   templateState: ITemplate;
   topicId?: string;
   updateTopicImage: (fileName: string) => void;
+  handleDeleteTopicImage: () => void;
 }
 
 const ImageUploader: React.FC<IntImageUploader> = ({
   img,
   templateState,
   topicId,
-  updateTopicImage
+  updateTopicImage,
+  handleDeleteTopicImage
 }) => {
   const [progressState, setProgressState] = useState(0);
 
@@ -57,21 +60,25 @@ const ImageUploader: React.FC<IntImageUploader> = ({
   };
 
   return (
-    <div className="order-image-wrapper">
-      <div className="drop-zone-wrapper">
+    <>
+      <section>
         <Dropzone onDrop={acceptedFiles => handleFileUploads(acceptedFiles)}>
           {({ getRootProps, getInputProps }) => (
             <section>
-              <div
-                {...getRootProps()}
-                style={{ width: templateState.images.topic.height }}
-              >
+              <div {...getRootProps()} style={{ width: "250px" }}>
                 <input {...getInputProps()} />
-                <img
-                  className="img-thumbnail"
-                  src={TopicImageParser(img, templateState)}
-                  alt={img}
-                />
+                <div>
+                  <img
+                    className="img-thumbnail"
+                    src={TopicImageParser(
+                      img,
+                      templateState.images.topic.width,
+                      templateState.images.topic.height
+                    )}
+                    alt={img}
+                  />
+                </div>
+
                 <ProgressBar className="my-2" now={progressState} />
 
                 <div className="d-grid gap-2">
@@ -83,8 +90,20 @@ const ImageUploader: React.FC<IntImageUploader> = ({
             </section>
           )}
         </Dropzone>
-      </div>
-    </div>
+        {img && (
+          <div className="d-grid gap-2 mt-2">
+            <Button
+              variant="danger"
+              type="button"
+              size="sm"
+              onClick={handleDeleteTopicImage}
+            >
+              Delete Image
+            </Button>
+          </div>
+        )}{" "}
+      </section>
+    </>
   );
 };
 

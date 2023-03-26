@@ -1,6 +1,6 @@
 import React from "react";
 import * as Styled from "./SideBarNav.style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Icons from "react-feather";
 import { AppRoutes } from "../../types";
 import useAppData from "./../../hooks/useAppDataHook/useAppDataHook";
@@ -14,6 +14,7 @@ interface ISections {
 
 const SideBarNav: React.FC = () => {
   const { appState } = useAppData();
+  const navigate = useNavigate();
 
   const sections: ISections[] = [
     // {
@@ -53,9 +54,14 @@ const SideBarNav: React.FC = () => {
     // }
   ];
 
+  const logOut = () => {
+    localStorage.removeItem(String(process.env.REACT_APP_JWT_TOKEN));
+    navigate("/");
+  };
+
   return (
     <Styled.SidebarNavWrapper isSideBarViewable={appState.isSideBarViewable}>
-      <Styled.SidebarNavHeader>OverlayMe</Styled.SidebarNavHeader>
+      <Styled.SidebarNavHeader>GamerToolKit</Styled.SidebarNavHeader>
 
       <Styled.SidebarNavItemDivider>Menu</Styled.SidebarNavItemDivider>
 
@@ -69,6 +75,13 @@ const SideBarNav: React.FC = () => {
           </Styled.SidebarNavItem>
         </Link>
       ))}
+
+      <Styled.SidebarNavItemBottom onClick={logOut}>
+        <Styled.SidebarNavItemIcon>
+          <Icons.LogOut />
+        </Styled.SidebarNavItemIcon>
+        <Styled.SidebarNavText>Log Out</Styled.SidebarNavText>
+      </Styled.SidebarNavItemBottom>
     </Styled.SidebarNavWrapper>
   );
 };

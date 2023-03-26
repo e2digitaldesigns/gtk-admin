@@ -38,8 +38,11 @@ export interface IEpisode {
   templateId: string;
   ticker: IEpisodeTicker[];
   topics: IEpisodeTopic[];
+  userId: string;
   contentBoxes: any[];
   sponsorBoxes: any[];
+  logo: string;
+  sponsorImages: string[];
 }
 
 export const defaultEpisodeState: IEpisode = {
@@ -54,8 +57,11 @@ export const defaultEpisodeState: IEpisode = {
   templateId: "",
   ticker: [],
   topics: [],
+  userId: "",
   contentBoxes: [],
-  sponsorBoxes: []
+  sponsorBoxes: [],
+  sponsorImages: [],
+  logo: " "
 };
 
 export const defaultEpisodeTopicState: IEpisodeTopic = {
@@ -74,7 +80,10 @@ export enum AccordionKeys {
   Delete = "Delete",
   Episode = "Episode",
   Hosts = "Host",
+  Logo = "Logo",
+  Links = "Links",
   Ticker = "Ticker",
   Socials = "Socials",
+  Sponsors = "Sponsors",
   Topics = "Topics"
 }

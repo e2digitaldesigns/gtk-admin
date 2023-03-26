@@ -82,3 +82,13 @@ export const SidebarNavText = styled.div`
   font-size: 0.875rem;
   font-weight: 500;
 `;
+
+export const SidebarNavItemBottom = styled(SidebarNavItem)<ISidebarNavItem>`
+  position: absolute;
+  bottom: 0;
+  border-top: 0.0625rem solid ${borderColor};
+  border-bottom: none;
+  :hover {
+    cursor: pointer;
+  }
+`;

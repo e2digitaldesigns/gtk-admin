@@ -18,10 +18,14 @@ export const TopicFormGrid = styled.div`
   }
 `;
 
-export const TopicGrid = styled.div`
+interface ITopicGrid {
+  showImage?: boolean;
+}
+
+export const TopicGrid = styled.div<ITopicGrid>`
   width: 100%;
   display: grid;
-  grid-template-columns: 100px 1fr 40px;
+  grid-template-columns: ${props => props.showImage && "100px"} 1fr 40px;
   grid-column-gap: 0.5rem;
 `;
 

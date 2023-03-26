@@ -84,7 +84,7 @@ export const Episodic: React.FC<IEpisodic> = ({
 
         <Row>
           <Col>
-            <Alert variant="info">
+            <Alert variant="warning">
               If "Current" is set to "True" this Episode will appear in your
               streaming software.
             </Alert>

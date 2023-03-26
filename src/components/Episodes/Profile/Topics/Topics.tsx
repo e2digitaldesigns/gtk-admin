@@ -12,7 +12,8 @@ import _includes from "lodash/includes";
 import _filter from "lodash/filter";
 import _find from "lodash/find";
 import _range from "lodash/range";
-import ImageUploader from "../../../Shared/imageUploader";
+import ImageUploader from "../../../Shared/ImageUploader/imageUploader";
+import httpService from "../../../../utils/httpService";
 
 interface ITopicProps {
   activeTopicId: string;
@@ -81,29 +82,79 @@ export const EpisodeTopics: React.FC<ITopicProps> = ({
     activeTopic && handleTopicSubmit(activeTopic);
   };
 
-  const handleUpdateTopicImage = (fileName: string) => {
-    activeTopic &&
-      setActiveTopic({
-        ...activeTopic,
-        img: fileName
-      });
+  const handleUpdateTopicImage = async (fileName: string): Promise<void> => {
+    if (!activeTopic) return;
+
+    if (activeTopic?.img) {
+      try {
+        const { data } = await httpService.delete(
+          `${process.env.REACT_APP_REST_API}upload/${activeTopic.img}`
+        );
+
+        if (!data?.success) {
+          throw new Error();
+        } else {
+          // toast.success("Episode updated successfully!");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    setActiveTopic({
+      ...activeTopic,
+      img: fileName
+    });
   };
 
   React.useEffect(() => {
     activeTopic && handleTopicSubmit(activeTopic);
   }, [activeTopic?.img]);
 
+  const handleDeleteTopicImage = async (): Promise<void> => {
+    if (!activeTopic) return;
+
+    try {
+      const { data } = await httpService.delete(
+        `${process.env.REACT_APP_REST_API}upload/${activeTopic.img}`
+      );
+
+      if (!data?.success) {
+        throw new Error();
+      } else {
+        // toast.success("Episode updated successfully!");
+
+        setActiveTopic({
+          ...activeTopic,
+          img: ""
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const showAdvancedOptions =
+    templateState.topicType === "advanced" ||
+    templateState.topicType === "video";
+
+  const isMultiTopic =
+    templateState.topicType === "multi" || showAdvancedOptions;
+
   if (!activeTopic) return null;
 
   return (
     <>
       <Styled.TopicFormGrid>
-        <ImageUploader
-          img={activeTopic.img}
-          templateState={templateState}
-          topicId={activeTopic._id}
-          updateTopicImage={handleUpdateTopicImage}
-        />
+        {showAdvancedOptions && (
+          <ImageUploader
+            img={activeTopic.img}
+            templateState={templateState}
+            topicId={activeTopic._id}
+            updateTopicImage={handleUpdateTopicImage}
+            handleDeleteTopicImage={handleDeleteTopicImage}
+          />
+        )}
 
         <div>
           <Row>
@@ -122,38 +173,45 @@ export const EpisodeTopics: React.FC<ITopicProps> = ({
           </Row>
 
           <Row>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Order</Form.Label>
+            {isMultiTopic && (
+              <Col>
+                <Form.Group className="mb-3">
+                  <Form.Label>Order</Form.Label>
 
-                <Form.Select
-                  name="order"
-                  onChange={handleChange}
-                  size="sm"
-                  value={activeTopic.order}
-                >
-                  {activeTopic.order === 0 && <option value={0}>Choose</option>}
+                  <Form.Select
+                    name="order"
+                    onChange={handleChange}
+                    size="sm"
+                    value={activeTopic.order}
+                  >
+                    {activeTopic.order === 0 && (
+                      <option value={0}>Choose</option>
+                    )}
 
-                  {_range(1, episodeTopicState.length + 1).map(number => (
-                    <option key={number} value={number}>
-                      {number}
-                    </option>
-                  ))}
-                </Form.Select>
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3">
-                <Form.Label>Time</Form.Label>
-                <Form.Control
-                  size="sm"
-                  name="timer"
-                  onChange={handleChange}
-                  type="number"
-                  value={activeTopic.timer}
-                />
-              </Form.Group>
-            </Col>
+                    {_range(1, episodeTopicState.length + 1).map(number => (
+                      <option key={number} value={number}>
+                        {number}
+                      </option>
+                    ))}
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+            )}
+
+            {templateState.topicType === "advanced" && (
+              <Col>
+                <Form.Group className="mb-3">
+                  <Form.Label>Time</Form.Label>
+                  <Form.Control
+                    size="sm"
+                    name="timer"
+                    onChange={handleChange}
+                    type="number"
+                    value={activeTopic.timer}
+                  />
+                </Form.Group>
+              </Col>
+            )}
           </Row>
         </div>
       </Styled.TopicFormGrid>
@@ -161,7 +219,7 @@ export const EpisodeTopics: React.FC<ITopicProps> = ({
       <Row className="mt-3">
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label>Topic Description</Form.Label>
+            <Form.Label>Topic Description {templateState.topicType}</Form.Label>
             <Form.Control
               as="textarea"
               rows={3}
@@ -174,63 +232,65 @@ export const EpisodeTopics: React.FC<ITopicProps> = ({
         </Col>
       </Row>
 
-      <Row>
-        <Col>
-          <Form.Group className="mb-3">
-            <Form.Label>Is Parent</Form.Label>
-            <Form.Select
-              disabled={activeTopic.isChild}
-              name="isParent"
-              onChange={handleChange}
-              size="sm"
-              value={activeTopic.isParent ? "true" : "false"}
-            >
-              <option value="false">False</option>
-              <option value="true">True</option>
-            </Form.Select>
-          </Form.Group>
-        </Col>
-        <Col>
-          <Form.Group className="mb-3">
-            <Form.Label>Is Child</Form.Label>
-            <Form.Select
-              disabled={activeTopic.isParent}
-              name="isChild"
-              onChange={handleChange}
-              size="sm"
-              value={activeTopic.isChild ? "true" : "false"}
-            >
-              <option value="false">False</option>
-              <option value="true">True</option>
-            </Form.Select>
-          </Form.Group>
-        </Col>
-        <Col>
-          <Form.Group className="mb-3">
-            <Form.Label>Parent</Form.Label>
-            <Form.Select
-              disabled={activeTopic.isParent}
-              name="parentId"
-              onChange={handleChange}
-              size="sm"
-              value={activeTopic?.parentId || ""}
-            >
-              <option value="">Choose...</option>
-              {_map(
-                _filter(
-                  episodeTopicState,
-                  (topic: IEpisodeTopic) => topic.isParent === true
-                ),
-                (parent: IEpisodeTopic) => (
-                  <option key={parent._id} value={parent._id}>
-                    {parent.name}
-                  </option>
-                )
-              )}
-            </Form.Select>
-          </Form.Group>
-        </Col>
-      </Row>
+      {showAdvancedOptions && (
+        <Row>
+          <Col>
+            <Form.Group className="mb-3">
+              <Form.Label>Is Parent</Form.Label>
+              <Form.Select
+                disabled={activeTopic.isChild}
+                name="isParent"
+                onChange={handleChange}
+                size="sm"
+                value={activeTopic.isParent ? "true" : "false"}
+              >
+                <option value="false">False</option>
+                <option value="true">True</option>
+              </Form.Select>
+            </Form.Group>
+          </Col>
+          <Col>
+            <Form.Group className="mb-3">
+              <Form.Label>Is Child</Form.Label>
+              <Form.Select
+                disabled={activeTopic.isParent}
+                name="isChild"
+                onChange={handleChange}
+                size="sm"
+                value={activeTopic.isChild ? "true" : "false"}
+              >
+                <option value="false">False</option>
+                <option value="true">True</option>
+              </Form.Select>
+            </Form.Group>
+          </Col>
+          <Col>
+            <Form.Group className="mb-3">
+              <Form.Label>Parent</Form.Label>
+              <Form.Select
+                disabled={activeTopic.isParent}
+                name="parentId"
+                onChange={handleChange}
+                size="sm"
+                value={activeTopic?.parentId || ""}
+              >
+                <option value="">Choose...</option>
+                {_map(
+                  _filter(
+                    episodeTopicState,
+                    (topic: IEpisodeTopic) => topic.isParent === true
+                  ),
+                  (parent: IEpisodeTopic) => (
+                    <option key={parent._id} value={parent._id}>
+                      {parent.name}
+                    </option>
+                  )
+                )}
+              </Form.Select>
+            </Form.Group>
+          </Col>
+        </Row>
+      )}
 
       <Row>
         <Col>
@@ -244,15 +304,17 @@ export const EpisodeTopics: React.FC<ITopicProps> = ({
             Submit
           </Button>
 
-          <Button
-            className="me-2"
-            variant="secondary"
-            type="button"
-            size="sm"
-            onClick={handleCreateNewTopic}
-          >
-            New Topic
-          </Button>
+          {isMultiTopic && (
+            <Button
+              className="me-2"
+              variant="secondary"
+              type="button"
+              size="sm"
+              onClick={handleCreateNewTopic}
+            >
+              New Topic
+            </Button>
+          )}
         </Col>
       </Row>
     </>

@@ -1,6 +1,7 @@
 import React from "react";
 import { toast } from "react-toastify";
 import Accordion from "react-bootstrap/Accordion";
+
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
@@ -31,6 +32,10 @@ import { EpisodeSocials } from "./Socials/Socials";
 import { EpisodeTopics } from "./Topics/Topics";
 import { EpisodeProfileTopics } from "./Topics/TopicList";
 import httpService from "../../../utils/httpService";
+import ProfileTemplate from "./Template/Template";
+import EpisodeLinks from "./Links/Links";
+import AccordionWrapper from "../utils/AccordionWrapper";
+import ImageLister from "./ImageLister/ImageLister";
 
 export interface IEpisodeProfileProps {}
 
@@ -38,6 +43,7 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [activeTopicId, setActiveTopicId] = React.useState<string>("");
+  const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
 
   const [episodeState, setEpisodeState] =
     React.useState<IEpisode>(defaultEpisodeState);
@@ -46,15 +52,32 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
     React.useState<ITemplate>(defaultTemplateState);
 
   const episodeTopicsRef = React.useRef<IEpisodeTopic[]>([]);
+  const episodeSponsorImagesRef = React.useRef<string[]>([]);
+  const episodeLogoImagesRef = React.useRef<string>(" ");
 
   React.useEffect(() => {
-    const isEqual = _isEqual(episodeTopicsRef.current, episodeState.topics);
+    const isEqualTopics = _isEqual(
+      episodeTopicsRef.current,
+      episodeState.topics
+    );
 
-    if (isEqual) return;
+    const isEqualSponsors = _isEqual(
+      episodeSponsorImagesRef.current,
+      episodeState.sponsorImages
+    );
+
+    const isEqualLogo = _isEqual(
+      episodeLogoImagesRef.current,
+      episodeState.logo
+    );
+
+    if (isEqualTopics && isEqualSponsors && isEqualLogo) return;
     handleSubmit();
 
     episodeTopicsRef.current = episodeState.topics;
-  }, [episodeState.topics]);
+    episodeSponsorImagesRef.current = episodeState.sponsorImages;
+    episodeLogoImagesRef.current = episodeState.logo;
+  }, [episodeState.topics, episodeState.sponsorImages]);
 
   React.useEffect(() => {
     let stillHere = true;
@@ -69,11 +92,15 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
       if (stillHere) {
         setEpisodeState(episode);
         setTemplateState(template);
+        setIsLoaded(true);
 
         if (episode?.topics?.[0]) {
           setActiveTopicId(episode.topics[0]._id);
         }
+
         episodeTopicsRef.current = episode.topics;
+        episodeSponsorImagesRef.current = episode.sponsorImages;
+        episodeLogoImagesRef.current = episode.logo;
       }
     };
 
@@ -220,104 +247,184 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
     }
   };
 
+  const updateStateImage = (
+    imageType: "logo" | "sponsors",
+    image: string,
+    arrayAction: "add" | "remove" = "add"
+  ): void => {
+    const newState = _cloneDeep(episodeState);
+
+    if (arrayAction === "add") {
+      imageType === "sponsors"
+        ? newState.sponsorImages.push(image)
+        : (newState.logo = image);
+    } else if (arrayAction === "remove") {
+      imageType === "sponsors"
+        ? newState.sponsorImages.splice(
+            newState.sponsorImages.indexOf(image),
+            1
+          )
+        : (newState.logo = "");
+    }
+    setEpisodeState(newState);
+  };
+
+  const isSingleTopic = templateState.topicType === "single";
+
   return (
     <Row>
-      <Col lg={7}>
+      <Col lg={isSingleTopic ? 12 : 7}>
         <Card className="mb-3">
           <Card.Body>
-            <Accordion defaultActiveKey={[AccordionKeys.Episode]} alwaysOpen>
-              <Accordion.Item eventKey={AccordionKeys.Episode}>
-                <Accordion.Header>Episode</Accordion.Header>
-                <Accordion.Body>
-                  <Episodic
-                    handleChange={handleChange}
-                    handleSubmit={handleSubmit}
-                    state={episodeState}
+            <ProfileTemplate
+              template={templateState}
+              userId={episodeState.userId}
+            />
+
+            <Accordion defaultActiveKey={[AccordionKeys.Topics]} alwaysOpen>
+              <AccordionWrapper
+                eventKey={AccordionKeys.Episode}
+                header="Episode Information"
+              >
+                <Episodic
+                  handleChange={handleChange}
+                  handleSubmit={handleSubmit}
+                  state={episodeState}
+                />
+              </AccordionWrapper>
+
+              <AccordionWrapper
+                eventKey={AccordionKeys.Topics}
+                header={`Topics (${episodeState.topics.length})`}
+              >
+                {episodeState.topics.length > 0 ? (
+                  <EpisodeTopics
+                    activeTopicId={activeTopicId}
+                    episodeTopicState={episodeState.topics}
+                    handleCreateNewTopic={handleCreateNewTopic}
+                    handleTopicSubmit={handleTopicSubmit}
+                    templateState={templateState}
                   />
-                </Accordion.Body>
-              </Accordion.Item>
+                ) : (
+                  <Button
+                    className="me-2"
+                    variant="secondary"
+                    type="button"
+                    size="sm"
+                    onClick={handleCreateNewTopic}
+                  >
+                    New Topic
+                  </Button>
+                )}
+              </AccordionWrapper>
 
-              <Accordion.Item eventKey={AccordionKeys.Topics}>
-                <Accordion.Header>Topics</Accordion.Header>
-                <Accordion.Body>
-                  {episodeState.topics.length ? (
-                    <EpisodeTopics
-                      activeTopicId={activeTopicId}
-                      episodeTopicState={episodeState.topics}
-                      handleCreateNewTopic={handleCreateNewTopic}
-                      handleTopicSubmit={handleTopicSubmit}
-                      templateState={templateState}
-                    />
-                  ) : (
-                    <Button
-                      className="me-2"
-                      variant="secondary"
-                      type="button"
-                      size="sm"
-                      onClick={handleCreateNewTopic}
-                    >
-                      New Topic
-                    </Button>
-                  )}
-                </Accordion.Body>
-              </Accordion.Item>
-
-              <Accordion.Item eventKey={AccordionKeys.Hosts}>
-                <Accordion.Header>Hosts</Accordion.Header>
-                <Accordion.Body>
+              {templateState.maxHosts > 0 && (
+                <AccordionWrapper
+                  eventKey={AccordionKeys.Hosts}
+                  header={`Hosts (${episodeState.hosts.length} / ${templateState.maxHosts})`}
+                >
                   <EpisodeHosts
                     handleHostSelect={handleHostSelect}
                     handleSubmit={handleSubmit}
                     episodeHostsState={episodeState.hosts}
                     maxHosts={templateState.maxHosts}
                   />
-                </Accordion.Body>
-              </Accordion.Item>
+                </AccordionWrapper>
+              )}
 
-              <Accordion.Item eventKey={AccordionKeys.Ticker}>
-                <Accordion.Header>News Ticker</Accordion.Header>
-                <Accordion.Body>
-                  <EpisodeTicker
-                    handleAddTicker={handleAddTicker}
-                    handleChangeTicker={handleChangeTicker}
-                    handleDeleteTicker={handleDeleteTicker}
-                    handleSubmit={handleSubmit}
-                    tickerState={episodeState.ticker}
-                    tickerType={templateState.tickerType}
+              <AccordionWrapper
+                eventKey={AccordionKeys.Ticker}
+                header={`News Ticker / Scroller (${episodeState.ticker.length})`}
+              >
+                {" "}
+                <EpisodeTicker
+                  handleAddTicker={handleAddTicker}
+                  handleChangeTicker={handleChangeTicker}
+                  handleDeleteTicker={handleDeleteTicker}
+                  handleSubmit={handleSubmit}
+                  tickerState={episodeState.ticker}
+                  tickerType={templateState.tickerType}
+                />
+              </AccordionWrapper>
+
+              <AccordionWrapper
+                eventKey={AccordionKeys.Socials}
+                header="Social Networks"
+              >
+                <EpisodeSocials
+                  handleSocialSelect={handleSocialSelect}
+                  handleSubmit={handleSubmit}
+                  episodeSocialsState={episodeState.socialNetworks}
+                />
+              </AccordionWrapper>
+
+              {templateState.images?.logo?.amount > 0 && (
+                <AccordionWrapper
+                  eventKey={AccordionKeys.Logo}
+                  header={`Logo ${templateState.images?.logo?.width}x${templateState.images?.logo?.height}`}
+                >
+                  <ImageLister
+                    amount={templateState.images?.logo?.amount}
+                    height={templateState.images?.logo?.height}
+                    imageType="logo"
+                    width={templateState.images?.logo?.width}
+                    updateStateImage={updateStateImage}
+                    images={episodeState.logo}
                   />
-                </Accordion.Body>
-              </Accordion.Item>
+                </AccordionWrapper>
+              )}
 
-              <Accordion.Item eventKey={AccordionKeys.Socials}>
-                <Accordion.Header>Social Networks</Accordion.Header>
-                <Accordion.Body>
-                  <EpisodeSocials
-                    handleSocialSelect={handleSocialSelect}
-                    handleSubmit={handleSubmit}
-                    episodeSocialsState={episodeState.socialNetworks}
+              {templateState.images?.sponsors?.amount > 0 && (
+                <AccordionWrapper
+                  eventKey={AccordionKeys.Sponsors}
+                  header={`Sponsor Images ${
+                    templateState.images?.sponsors?.width
+                  }x${templateState.images?.sponsors?.height} (${
+                    episodeState?.sponsorImages?.length || 0
+                  })`}
+                >
+                  <ImageLister
+                    amount={templateState.images?.sponsors?.amount}
+                    height={templateState.images?.sponsors?.height}
+                    imageType="sponsors"
+                    width={templateState.images?.sponsors?.width}
+                    updateStateImage={updateStateImage}
+                    images={episodeState.sponsorImages}
                   />
-                </Accordion.Body>
-              </Accordion.Item>
+                </AccordionWrapper>
+              )}
 
-              <Accordion.Item eventKey={AccordionKeys.Delete}>
-                <Accordion.Header>Delete Episode</Accordion.Header>
-                <Accordion.Body>
-                  <Button onClick={handleDeleteEpisode} variant="danger">
-                    Delete this Episode
-                  </Button>
-                </Accordion.Body>
-              </Accordion.Item>
+              {templateState.linkArray.length > 0 && (
+                <AccordionWrapper
+                  eventKey={AccordionKeys.Links}
+                  header="Browser Links"
+                >
+                  <EpisodeLinks template={templateState} />
+                </AccordionWrapper>
+              )}
+
+              <AccordionWrapper
+                eventKey={AccordionKeys.Delete}
+                header="Delete Episode"
+              >
+                {" "}
+                <Button onClick={handleDeleteEpisode} variant="danger">
+                  Delete this Episode
+                </Button>
+              </AccordionWrapper>
             </Accordion>
           </Card.Body>
         </Card>
       </Col>
 
-      <EpisodeProfileTopics
-        episodeTopics={episodeState.topics}
-        handleActivateTopic={handleActivateTopic}
-        handleDeleteTopic={handleDeleteTopic}
-        templateState={templateState}
-      />
+      {templateState.topicType !== "single" && (
+        <EpisodeProfileTopics
+          episodeTopics={episodeState.topics}
+          handleActivateTopic={handleActivateTopic}
+          handleDeleteTopic={handleDeleteTopic}
+          templateState={templateState}
+        />
+      )}
     </Row>
   );
 };
