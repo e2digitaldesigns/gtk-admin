@@ -23,6 +23,7 @@ import {
   IEpisode,
   IEpisodeTicker,
   IEpisodeTopic,
+  ILinkArray,
   ITemplate
 } from "../../../types";
 import { EpisodeHosts } from "./Hosts/Hosts";
@@ -44,6 +45,9 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
   const { id } = useParams();
   const [activeTopicId, setActiveTopicId] = React.useState<string>("");
   const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
+  const [linkParams, setLinkParams] = React.useState<{
+    [key: string]: boolean;
+  }>();
 
   const [episodeState, setEpisodeState] =
     React.useState<IEpisode>(defaultEpisodeState);
@@ -88,6 +92,7 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
       );
 
       const { episode, template } = data;
+      const obj = {} as { [key: string]: boolean };
 
       if (stillHere) {
         setEpisodeState(episode);
@@ -97,6 +102,12 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
         if (episode?.topics?.[0]) {
           setActiveTopicId(episode.topics[0]._id);
         }
+
+        template.linkArray.forEach((item: ILinkArray) => {
+          obj[item.param] = false;
+        });
+
+        setLinkParams(obj);
 
         episodeTopicsRef.current = episode.topics;
         episodeSponsorImagesRef.current = episode.sponsorImages;
@@ -279,6 +290,7 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
             <ProfileTemplate
               template={templateState}
               userId={episodeState.userId}
+              linkParams={linkParams}
             />
 
             <Accordion defaultActiveKey={[AccordionKeys.Topics]} alwaysOpen>
@@ -399,7 +411,11 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
                   eventKey={AccordionKeys.Links}
                   header="Browser Links"
                 >
-                  <EpisodeLinks template={templateState} />
+                  <EpisodeLinks
+                    linkParams={linkParams}
+                    setLinkParams={setLinkParams}
+                    template={templateState}
+                  />
                 </AccordionWrapper>
               )}
 

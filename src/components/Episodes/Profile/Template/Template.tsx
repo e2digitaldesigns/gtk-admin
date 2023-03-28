@@ -6,18 +6,27 @@ import { ITemplate } from "../../../../types";
 interface IProfileTemplateProps {
   template: ITemplate;
   userId: string;
+  linkParams: { [key: string]: boolean } | undefined;
 }
 
 const ProfileTemplate: React.FC<IProfileTemplateProps> = ({
   template,
-  userId
+  userId,
+  linkParams
 }) => {
   const { id } = useParams();
-  const previewLink = `${process.env.REACT_APP_CLOUD_OVERLAY_BASE}?uid=${userId}&eid=${id}`;
+  const previewLinkBase = `${process.env.REACT_APP_CLOUD_OVERLAY_BASE}?uid=${userId}&eid=${id}`;
 
   const openPreview = () => {
-    window.open(previewLink, "_blank", "noreferrer");
-    return null;
+    // const linkParameters = Object.keys(linkParams || {})
+    //   .map(key => {
+    //     return linkParams?.[key] ? `${key}=1` : null;
+    //   })
+    //   .filter(Boolean)
+    //   .join("&");
+    // console.log(22, `${previewLinkBase}&${linkParameters}`);
+    // window.open(`${previewLinkBase}&${linkParameters}`, "_blank", "noreferrer");
+    // return null;
   };
 
   return (
@@ -29,8 +38,6 @@ const ProfileTemplate: React.FC<IProfileTemplateProps> = ({
         <Button onClick={openPreview} variant="outline-primary">
           Episode Preview
         </Button>
-        {/* <Button variant="outline-primary">GTK Sample Episode</Button>
-        <Button variant="outline-primary">Browser Link Compiler</Button> */}
       </ButtonGroup>
 
       <hr />

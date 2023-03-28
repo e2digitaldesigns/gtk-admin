@@ -219,7 +219,7 @@ export const EpisodeTopics: React.FC<ITopicProps> = ({
       <Row className="mt-3">
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label>Topic Description {templateState.topicType}</Form.Label>
+            <Form.Label>Topic Description</Form.Label>
             <Form.Control
               as="textarea"
               rows={3}
