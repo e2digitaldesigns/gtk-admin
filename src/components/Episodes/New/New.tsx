@@ -19,6 +19,13 @@ interface IState {
 export const EpisodeNew: React.FC<IEpisodeNewProps> = () => {
   const navigate = useNavigate();
   const [templates, setTemplates] = React.useState([]);
+  const [currentState, setCurrentState] = React.useState<any>({
+    hosts: true,
+    logo: true,
+    news: true,
+    socialNetworks: true,
+    sponsors: true
+  });
 
   const [state, setState] = React.useState<IState>({
     name: "",
@@ -67,7 +74,7 @@ export const EpisodeNew: React.FC<IEpisodeNewProps> = () => {
     try {
       const { data } = await httpService.post(
         `${process.env.REACT_APP_REST_API}episodes`,
-        { ...state }
+        { ...state, currentState }
       );
 
       data?._id && navigate(`${AppRoutes.EpisodesProfileLink}${data._id}`);
@@ -75,6 +82,10 @@ export const EpisodeNew: React.FC<IEpisodeNewProps> = () => {
       console.error(error);
       toast.error("Error, Please try again later!");
     }
+  };
+
+  const handleCheckbox = (checked: boolean, param: string): void => {
+    setCurrentState({ ...currentState, [param]: checked });
   };
 
   return (
@@ -108,6 +119,45 @@ export const EpisodeNew: React.FC<IEpisodeNewProps> = () => {
                   </option>
                 ))}
               </Form.Select>
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Check
+                checked={currentState.logo}
+                label="Use Logo from current episode"
+                onChange={e => handleCheckbox(e.target.checked, "logo")}
+                type="checkbox"
+              />
+
+              <Form.Check
+                checked={currentState.hosts}
+                label="Use Hosts from current episode"
+                onChange={e => handleCheckbox(e.target.checked, "hosts")}
+                type="checkbox"
+              />
+
+              <Form.Check
+                checked={currentState.socialNetworks}
+                label="Use Socials from current episode"
+                onChange={e =>
+                  handleCheckbox(e.target.checked, "socialNetworks")
+                }
+                type="checkbox"
+              />
+
+              <Form.Check
+                checked={currentState.sponsors}
+                label="Use Sponsors from current episode"
+                onChange={e => handleCheckbox(e.target.checked, "sponsors")}
+                type="checkbox"
+              />
+
+              <Form.Check
+                checked={currentState.news}
+                label="Use News from current episode"
+                onChange={e => handleCheckbox(e.target.checked, "news")}
+                type="checkbox"
+              />
             </Form.Group>
 
             <Button variant="primary" type="submit" size="sm">

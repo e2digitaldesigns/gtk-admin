@@ -10,7 +10,7 @@ import useAppData from "./../../../hooks/useAppDataHook/useAppDataHook";
 
 export interface IEpisodeLandingProps {
   description?: string;
-  listingLink: AppRoutes;
+  listingLink?: AppRoutes;
   newLink?: AppRoutes;
   prefix: string;
   title: string;
@@ -26,8 +26,8 @@ const ApplicationHeader: React.FC<IEpisodeLandingProps> = ({
   const { appState, setAppState } = useAppData();
   const navigate = useNavigate();
 
-  const handleOnClick = (link: AppRoutes) => {
-    navigate(link);
+  const handleOnClick = (link: AppRoutes | undefined) => {
+    link && navigate(link);
   };
 
   const handleSidebarToggle = () => {

@@ -26,7 +26,7 @@ export const Episodic: React.FC<IEpisodic> = ({
         <Row>
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label>Episode Name</Form.Label>
+              <Form.Label>Name</Form.Label>
               <Form.Control
                 size="sm"
                 name="name"
@@ -41,7 +41,7 @@ export const Episodic: React.FC<IEpisodic> = ({
         <Row>
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label>Episode Number</Form.Label>
+              <Form.Label>Number</Form.Label>
               <Form.Control
                 size="sm"
                 name="number"
@@ -54,7 +54,7 @@ export const Episodic: React.FC<IEpisodic> = ({
           </Col>
           <Col>
             <Form.Group className="mb-3">
-              <Form.Label>Episode Date</Form.Label>
+              <Form.Label>Date</Form.Label>
               <Form.Control
                 size="sm"
                 name="airDate"

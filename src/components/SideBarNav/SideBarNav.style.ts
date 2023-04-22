@@ -14,6 +14,7 @@ export const SidebarNavWrapper = styled.section<ISidebarNavWrapper>`
   position: absolute;
   top: 0;
   left: ${props => (props.isSideBarViewable ? "0" : "-220px")};
+  /* left: -220px; */
   width: 220px;
   height: 100vh;
   overflow-y: auto;
@@ -23,6 +24,8 @@ export const SidebarNavWrapper = styled.section<ISidebarNavWrapper>`
   overflow: hidden;
   padding: 0;
   transition: left 0.5s;
+
+  z-index: 500;
 
   a {
     text-decoration: none;

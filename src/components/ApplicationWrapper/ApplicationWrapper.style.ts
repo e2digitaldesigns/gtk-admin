@@ -15,6 +15,10 @@ export const MainContent = styled.section<IMainContent>`
   width: 100%;
   padding-left: ${props => (props.isSideBarViewable ? "220px" : "0")};
   transition: padding 0.5s;
+
+  @media (max-width: 1250px) {
+    /* padding-left: 0; */
+  }
 `;
 
 export const Drawer = styled.section`

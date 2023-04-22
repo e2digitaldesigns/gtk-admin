@@ -9,6 +9,8 @@ import { Socials } from "./../components/Socials";
 import { Templates } from "./../components/Templates";
 import ProtectedRoute from "./ProtectedRoute";
 import { Login } from "./../components/Login/Login";
+import { Controls } from "../components/Controls";
+import { ChatBots } from "../components/ChatBots";
 
 export const applicationRouter = createBrowserRouter([
   {
@@ -99,6 +101,32 @@ export const applicationRouter = createBrowserRouter([
           {
             path: AppRoutes.TemplateProfile,
             element: <Templates.Profile />
+          }
+        ]
+      },
+      {
+        path: AppRoutes.Controls,
+        element: <Controls.Landing />,
+
+        children: [
+          {
+            path: AppRoutes.Controls,
+            element: <Controls.Listing />
+          }
+        ]
+      },
+      {
+        path: AppRoutes.ChatBots,
+        element: <ChatBots.Landing />,
+
+        children: [
+          {
+            path: AppRoutes.ChatBots,
+            element: <ChatBots.Listing />
+          },
+          {
+            path: AppRoutes.ChatBotsConnectTwitch,
+            element: <ChatBots.Connect />
           }
         ]
       }

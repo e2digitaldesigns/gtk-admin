@@ -100,7 +100,7 @@ const ImageLister: React.FC<IImageListerProps> = ({
               <Styled.ImageListerGridItemOptions
                 onClick={() => handleDeleteTopicImage(item)}
               >
-                Delete Image
+                Delete
               </Styled.ImageListerGridItemOptions>
             </Styled.ImageListerGridItem>
           ))}

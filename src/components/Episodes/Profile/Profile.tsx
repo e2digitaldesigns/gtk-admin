@@ -44,10 +44,7 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const [activeTopicId, setActiveTopicId] = React.useState<string>("");
-  const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
-  const [linkParams, setLinkParams] = React.useState<{
-    [key: string]: boolean;
-  }>();
+  // const [isLoaded, setIsLoaded] = React.useState<boolean>(false);
 
   const [episodeState, setEpisodeState] =
     React.useState<IEpisode>(defaultEpisodeState);
@@ -92,22 +89,15 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
       );
 
       const { episode, template } = data;
-      const obj = {} as { [key: string]: boolean };
 
       if (stillHere) {
         setEpisodeState(episode);
         setTemplateState(template);
-        setIsLoaded(true);
+        // setIsLoaded(true);
 
         if (episode?.topics?.[0]) {
           setActiveTopicId(episode.topics[0]._id);
         }
-
-        template.linkArray.forEach((item: ILinkArray) => {
-          obj[item.param] = false;
-        });
-
-        setLinkParams(obj);
 
         episodeTopicsRef.current = episode.topics;
         episodeSponsorImagesRef.current = episode.sponsorImages;
@@ -287,11 +277,7 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
       <Col lg={isSingleTopic ? 12 : 7}>
         <Card className="mb-3">
           <Card.Body>
-            <ProfileTemplate
-              template={templateState}
-              userId={episodeState.userId}
-              linkParams={linkParams}
-            />
+            <ProfileTemplate template={templateState} />
 
             <Accordion defaultActiveKey={[AccordionKeys.Topics]} alwaysOpen>
               <AccordionWrapper
@@ -406,18 +392,14 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
                 </AccordionWrapper>
               )}
 
-              {templateState.linkArray.length > 0 && (
-                <AccordionWrapper
-                  eventKey={AccordionKeys.Links}
-                  header="Browser Links"
-                >
-                  <EpisodeLinks
-                    linkParams={linkParams}
-                    setLinkParams={setLinkParams}
-                    template={templateState}
-                  />
-                </AccordionWrapper>
-              )}
+              {/* {templateState.linkArray.length > 0 && ( */}
+              <AccordionWrapper
+                eventKey={AccordionKeys.Links}
+                header="Browser Links"
+              >
+                <EpisodeLinks template={templateState} />
+              </AccordionWrapper>
+              {/* )} */}
 
               <AccordionWrapper
                 eventKey={AccordionKeys.Delete}

@@ -98,7 +98,7 @@ const ImageUploader: React.FC<IntImageUploader> = ({
               size="sm"
               onClick={handleDeleteTopicImage}
             >
-              Delete Image
+              Delete
             </Button>
           </div>
         )}{" "}

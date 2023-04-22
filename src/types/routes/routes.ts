@@ -20,5 +20,10 @@ export enum AppRoutes {
   Templates = "/admin/podcast/templates",
   TemplateNew = "/admin/podcast/templates/new",
   TemplateProfile = "/admin/podcast/templates/:id",
-  TemplateProfileLink = "/admin/podcast/templates/"
+  TemplateProfileLink = "/admin/podcast/templates/",
+
+  Controls = "/admin/podcast/controls",
+
+  ChatBots = "/admin/chat-bots",
+  ChatBotsConnectTwitch = "/admin/chat-bots/connect-twitch"
 }

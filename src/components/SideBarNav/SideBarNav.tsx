@@ -22,6 +22,12 @@ const SideBarNav: React.FC = () => {
     //   link: AppRoutes.DashBoard,
     //   SideBarIcon: Icons.Activity
     // },
+
+    {
+      display: "Twitch Chat Bot",
+      link: AppRoutes.ChatBots,
+      SideBarIcon: Icons.Twitch
+    },
     {
       display: "Podcast Templates",
       link: AppRoutes.Templates,
@@ -38,6 +44,12 @@ const SideBarNav: React.FC = () => {
       display: "Host",
       link: AppRoutes.Hosts,
       SideBarIcon: Icons.User,
+      isChild: true
+    },
+    {
+      display: "Controls",
+      link: AppRoutes.Controls,
+      SideBarIcon: Icons.Settings,
       isChild: true
     },
     {

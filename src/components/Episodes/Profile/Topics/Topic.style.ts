@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const TopicFormGrid = styled.div`
   display: grid;
   grid-template-columns: max-content 1fr;
-  grid-column-gap: 1rem;
+  gap: 1rem;
   > div:first-child {
     width: 100%;
     overflow: hidden;
@@ -15,6 +15,10 @@ export const TopicFormGrid = styled.div`
   > div:last-child {
     width: 100%;
     overflow: hidden;
+  }
+
+  @media (max-width: 1250px) {
+    grid-template-columns: 1fr;
   }
 `;
 

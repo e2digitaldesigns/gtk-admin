@@ -10,6 +10,7 @@ import httpService from "../../../utils/httpService";
 import { useParams, useNavigate } from "react-router-dom";
 import { InputGroup } from "react-bootstrap";
 
+import socialMediaSites from "../../../config/socailMediaConfig.json";
 import _cloneDeep from "lodash/cloneDeep";
 
 import { v4 as uuidv4 } from "uuid";
@@ -112,7 +113,11 @@ export const HostProfile: React.FC<IHostProfileProps> = () => {
 
   const handleAddSocialNetwork = (): void => {
     const newState = _cloneDeep(state);
-    newState.socials.push({ _id: uuidv4(), site: "", username: "" });
+    newState.socials.push({
+      _id: uuidv4(),
+      site: socialMediaSites[1],
+      username: ""
+    });
     setState(newState);
   };
 
@@ -182,7 +187,22 @@ export const HostProfile: React.FC<IHostProfileProps> = () => {
             <Row key={index}>
               <Col>
                 <InputGroup className="mb-3">
-                  <Form.Control
+                  <Form.Select
+                    size="sm"
+                    name="site"
+                    onChange={(e: React.ChangeEvent<any>) =>
+                      handleChangeSocial(e, index)
+                    }
+                    value={social.site}
+                  >
+                    {socialMediaSites.map((site: string) => (
+                      <option key={site} value={site}>
+                        {site}
+                      </option>
+                    ))}
+                  </Form.Select>
+
+                  {/* <Form.Control
                     size="sm"
                     name="site"
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -190,7 +210,7 @@ export const HostProfile: React.FC<IHostProfileProps> = () => {
                     }
                     type="text"
                     value={social.site}
-                  />
+                  /> */}
                   <Form.Control
                     size="sm"
                     name="username"
