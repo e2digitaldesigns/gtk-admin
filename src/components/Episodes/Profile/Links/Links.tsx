@@ -2,7 +2,6 @@ import React from "react";
 
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import Alert from "react-bootstrap/Alert";
 import Form from "react-bootstrap/Form";
 import { toast } from "react-toastify";
 import { Copy, ExternalLink } from "react-feather";

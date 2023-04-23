@@ -1,13 +1,16 @@
 import * as React from "react";
 
+import { useNavigate } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
 import httpService from "../../../utils/httpService";
+import { AppRoutes } from "../../../types";
 
 export interface IChatBotsConnectProps {}
 
 export const ChatBotsConnect: React.FC<IChatBotsConnectProps> = () => {
+  const navigate = useNavigate();
   const [connected, setConnected] = React.useState<boolean | undefined>(
     undefined
   );
@@ -27,7 +30,7 @@ export const ChatBotsConnect: React.FC<IChatBotsConnectProps> = () => {
           token
         );
 
-        setConnected(true);
+        if (data.success) setConnected(true);
       } catch (error) {
         console.error(32, error);
         setConnected(false);
@@ -40,7 +43,11 @@ export const ChatBotsConnect: React.FC<IChatBotsConnectProps> = () => {
           `https://id.twitch.tv/oauth2/token?client_id=${TWITCH_CLIENT_ID}&client_secret=${TWITCH_CLIENT_SECRET}&code=${code}&grant_type=authorization_code&redirect_uri=${redirect}`
         );
 
-        setChat(data);
+        if (data.access_token) {
+          setChat(data);
+        } else {
+          setConnected(false);
+        }
       } catch (error) {
         console.error(45, error);
         setConnected(false);
@@ -51,9 +58,10 @@ export const ChatBotsConnect: React.FC<IChatBotsConnectProps> = () => {
   }, []);
 
   React.useEffect(() => {
-    if (connected === true) {
+    if (connected) {
       setTimeout(() => {
-        window.close();
+        // window.close();
+        navigate(AppRoutes.ChatBots);
       }, 2000);
     }
   }, [connected]);

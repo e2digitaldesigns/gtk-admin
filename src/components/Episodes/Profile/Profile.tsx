@@ -392,14 +392,12 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
                 </AccordionWrapper>
               )}
 
-              {/* {templateState.linkArray.length > 0 && ( */}
               <AccordionWrapper
                 eventKey={AccordionKeys.Links}
                 header="Browser Links"
               >
                 <EpisodeLinks template={templateState} />
               </AccordionWrapper>
-              {/* )} */}
 
               <AccordionWrapper
                 eventKey={AccordionKeys.Delete}

@@ -3,7 +3,6 @@ import * as React from "react";
 import Alert from "react-bootstrap/Alert";
 import Card from "react-bootstrap/Card";
 import { Button } from "react-bootstrap";
-import axios from "axios";
 import httpService from "../../../utils/httpService";
 
 export interface IChatBotsListingProps {}
@@ -18,7 +17,9 @@ export const ChatBotsListing: React.FC<IChatBotsListingProps> = () => {
   React.useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await httpService.get(`users/isTwitchAuthorized`);
+        const { data } = await httpService.get(`twitch/validateTwitchToken`);
+
+        console.log(data);
 
         if (data.authorized) {
           setAuthorized(true);
@@ -32,7 +33,8 @@ export const ChatBotsListing: React.FC<IChatBotsListingProps> = () => {
   }, []);
 
   const handleLink = (): void => {
-    window.open(link);
+    // window.open(link);
+    window.location.replace(link);
   };
 
   return (
@@ -47,14 +49,15 @@ export const ChatBotsListing: React.FC<IChatBotsListingProps> = () => {
 
           <Card.Subtitle className="mb-2 text-muted"></Card.Subtitle>
 
-          {authorized && (
+          {authorized ? (
             <Card.Text>Your Twitch account is connected to GTK</Card.Text>
+          ) : (
+            <Card.Text>
+              <Button size="sm" onClick={handleLink}>
+                Connect
+              </Button>
+            </Card.Text>
           )}
-          <Card.Text>
-            <Button size="sm" onClick={handleLink}>
-              Connect
-            </Button>
-          </Card.Text>
         </Card.Body>
       </Card>
     </>
