@@ -5,7 +5,7 @@ import ApplicationHeader from "../Shared/Header";
 
 export interface IEpisodeLandingProps {}
 
-export const EpisodeLanding: React.FC<IEpisodeLandingProps> = ({}) => {
+export const EpisodeLanding: React.FC<IEpisodeLandingProps> = () => {
   return (
     <>
       <ApplicationHeader

@@ -58,6 +58,7 @@ export const HostProfile: React.FC<IHostProfileProps> = () => {
     return () => {
       stillHere = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {

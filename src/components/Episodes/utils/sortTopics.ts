@@ -10,6 +10,7 @@ export const sortTopics = (topics: IEpisodeTopic[]) => {
     } else if (initSort[i].isParent === true) {
       finalSort.push(initSort[i]);
 
+      // eslint-disable-next-line array-callback-return
       initSort.map((topic: IEpisodeTopic) => {
         if (
           String(topic.parentId) === String(initSort[i]._id) &&

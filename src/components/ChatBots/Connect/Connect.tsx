@@ -64,6 +64,7 @@ export const ChatBotsConnect: React.FC<IChatBotsConnectProps> = () => {
         navigate(AppRoutes.ChatBots);
       }, 2000);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [connected]);
 
   return (

@@ -5,7 +5,6 @@ import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
 import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
-import _cloneDeep from "lodash/cloneDeep";
 import { IEpisodeTopic, ITemplate } from "../../../../types";
 import { sortTopics } from "../../utils/sortTopics";
 import * as Styled from "./Topic.style";

@@ -8,9 +8,7 @@ import { IEpisodeTopic, ITemplate } from "../../../../types";
 import * as Styled from "./Topic.style";
 
 import _map from "lodash/map";
-import _includes from "lodash/includes";
 import _filter from "lodash/filter";
-import _find from "lodash/find";
 import _range from "lodash/range";
 import ImageUploader from "../../../Shared/ImageUploader/imageUploader";
 import httpService from "../../../../utils/httpService";
@@ -40,6 +38,7 @@ export const EpisodeTopics: React.FC<ITopicProps> = ({
     );
 
     setActiveTopic(episode);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTopicId]);
 
   React.useEffect(() => {
@@ -63,6 +62,7 @@ export const EpisodeTopics: React.FC<ITopicProps> = ({
     return () => {
       stillHere = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTopic?.isParent, activeTopic?.isChild]);
 
   const handleChange = (
@@ -109,6 +109,7 @@ export const EpisodeTopics: React.FC<ITopicProps> = ({
 
   React.useEffect(() => {
     activeTopic && handleTopicSubmit(activeTopic);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTopic?.img]);
 
   const handleDeleteTopicImage = async (): Promise<void> => {

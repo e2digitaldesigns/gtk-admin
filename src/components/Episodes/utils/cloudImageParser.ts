@@ -1,5 +1,3 @@
-import { ITemplate } from "../../../types/podcast/template";
-
 export const TopicImageParser = (
   image: string | undefined,
   width: number,

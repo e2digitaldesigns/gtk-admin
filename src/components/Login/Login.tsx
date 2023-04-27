@@ -31,6 +31,7 @@ export const Login: React.FC<{}> = () => {
     };
 
     oAuth();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [credentials]);
 
   return (

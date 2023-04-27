@@ -23,7 +23,6 @@ import {
   IEpisode,
   IEpisodeTicker,
   IEpisodeTopic,
-  ILinkArray,
   ITemplate
 } from "../../../types";
 import { EpisodeHosts } from "./Hosts/Hosts";
@@ -78,6 +77,7 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
     episodeTopicsRef.current = episodeState.topics;
     episodeSponsorImagesRef.current = episodeState.sponsorImages;
     episodeLogoImagesRef.current = episodeState.logo;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [episodeState.topics, episodeState.sponsorImages]);
 
   React.useEffect(() => {
@@ -110,6 +110,7 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
     return () => {
       stillHere = false;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {

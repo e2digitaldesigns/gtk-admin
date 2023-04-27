@@ -2,7 +2,6 @@ import * as React from "react";
 import Card from "react-bootstrap/Card";
 import Table from "react-bootstrap/Table";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { AppRoutes } from "../../../types";
 import NoResults from "../../Shared/NoResults";
 import httpService from "../../../utils/httpService";

@@ -31,6 +31,7 @@ const EpisodeLinks: React.FC<IEpisodeLinksProps> = ({ template }) => {
     });
 
     setLinkParams(obj);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const isButtonEnabled =

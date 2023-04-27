@@ -1,5 +1,4 @@
 import * as React from "react";
-import { AppRoutes } from "../../types";
 import ApplicationHeader from "../Shared/Header";
 
 export interface IChatBotsLandingProps {}

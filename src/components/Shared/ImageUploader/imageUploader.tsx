@@ -6,7 +6,6 @@ import { TopicImageParser } from "../../Episodes/utils/cloudImageParser";
 import Button from "react-bootstrap/Button";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import { ITemplate } from "../../../types";
-import * as Styled from "./imageUploader.styles";
 
 interface IntImageUploader {
   img: string;
