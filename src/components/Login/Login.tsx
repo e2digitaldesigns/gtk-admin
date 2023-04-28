@@ -45,7 +45,6 @@ export const Login: React.FC<{}> = () => {
           console.error("Login Failed");
         }}
       />
-      ;
     </>
   );
 };
