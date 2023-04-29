@@ -1,4 +1,4 @@
-name: Production Build
+name: GTK Admin Production Build
 on:
   pull_request:
   push:
