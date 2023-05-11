@@ -10,7 +10,7 @@ body {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   /* white-space: nowrap; */
-  overflow: hidden;
+  /* overflow: hidden; */
   background-color: #eee;
 }
 

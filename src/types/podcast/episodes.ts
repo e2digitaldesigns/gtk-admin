@@ -24,44 +24,47 @@ export interface IEpisodeTopic {
   order: number;
   parentId: string | null;
   timer: number;
+  articles: string;
 }
 
 export interface IEpisode {
   _id: string;
-  name: string;
   active: boolean;
   airDate: string;
+  articles: string[];
+  contentBoxes: any[];
   current: any;
   hosts: IEpisodeHost[];
+  logo: string;
+  name: string;
   number: string | number;
   socialNetworks: IEpisodeSocials[];
+  sponsorBoxes: any[];
+  sponsorImages: string[];
   templateId: string;
   ticker: IEpisodeTicker[];
   topics: IEpisodeTopic[];
   userId: string;
-  contentBoxes: any[];
-  sponsorBoxes: any[];
-  logo: string;
-  sponsorImages: string[];
 }
 
 export const defaultEpisodeState: IEpisode = {
   _id: "",
-  name: "",
   active: false,
   airDate: "",
+  articles: [],
+  contentBoxes: [],
   current: false,
   hosts: [],
+  logo: " ",
+  name: "",
   number: "1",
   socialNetworks: [],
+  sponsorBoxes: [],
+  sponsorImages: [],
   templateId: "",
   ticker: [],
   topics: [],
-  userId: "",
-  contentBoxes: [],
-  sponsorBoxes: [],
-  sponsorImages: [],
-  logo: " "
+  userId: ""
 };
 
 export const defaultEpisodeTopicState: IEpisodeTopic = {
@@ -73,7 +76,8 @@ export const defaultEpisodeTopicState: IEpisodeTopic = {
   isParent: false,
   isChild: false,
   parentId: null,
-  img: ""
+  img: "",
+  articles: ""
 };
 
 export enum AccordionKeys {
@@ -83,6 +87,7 @@ export enum AccordionKeys {
   Logo = "Logo",
   Links = "Links",
   Ticker = "Ticker",
+  ShowRunner = "ShowRunner",
   Socials = "Socials",
   Sponsors = "Sponsors",
   Topics = "Topics"

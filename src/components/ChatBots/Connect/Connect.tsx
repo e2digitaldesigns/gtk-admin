@@ -11,9 +11,9 @@ export interface IChatBotsConnectProps {}
 
 export const ChatBotsConnect: React.FC<IChatBotsConnectProps> = () => {
   const navigate = useNavigate();
-  const [connected, setConnected] = React.useState<boolean | undefined>(
-    undefined
-  );
+  const [connected, setConnected] = React.useState<boolean>(false);
+
+  const [apiError, setApiError] = React.useState<boolean>(false);
 
   React.useEffect(() => {
     const queryParams = new URLSearchParams(window.location.search);
@@ -21,7 +21,7 @@ export const ChatBotsConnect: React.FC<IChatBotsConnectProps> = () => {
 
     const TWITCH_CLIENT_ID = process.env.REACT_APP_TWITCH_CLIENT_ID;
     const TWITCH_CLIENT_SECRET = process.env.REACT_APP_TWITCH_CLIENT_SECRET;
-    const redirect = process.env.REACT_APP_TWITCH_REDIRECT_URL;
+    const redirect = process.env.REACT_APP_TWITCH_REDIRECT_URL || "";
 
     const setChat = async (token: any) => {
       try {
@@ -30,27 +30,30 @@ export const ChatBotsConnect: React.FC<IChatBotsConnectProps> = () => {
           token
         );
 
-        if (data.success) setConnected(true);
+        if (data.success) {
+          setConnected(true);
+        }
       } catch (error) {
         console.error(32, error);
-        setConnected(false);
       }
     };
 
     const fetchData = async () => {
+      const link = `https://id.twitch.tv/oauth2/token?client_id=${TWITCH_CLIENT_ID}&client_secret=${TWITCH_CLIENT_SECRET}&code=${code}&grant_type=authorization_code&redirect_uri=${encodeURIComponent(
+        redirect
+      )}`;
+
       try {
-        const { data } = await axios.post(
-          `https://id.twitch.tv/oauth2/token?client_id=${TWITCH_CLIENT_ID}&client_secret=${TWITCH_CLIENT_SECRET}&code=${code}&grant_type=authorization_code&redirect_uri=${redirect}`
-        );
+        const { data } = await axios.post(link);
 
         if (data.access_token) {
           setChat(data);
         } else {
-          setConnected(false);
+          throw new Error("No access token");
         }
       } catch (error) {
         console.error(45, error);
-        setConnected(false);
+        setApiError(true);
       }
     };
 
@@ -60,7 +63,6 @@ export const ChatBotsConnect: React.FC<IChatBotsConnectProps> = () => {
   React.useEffect(() => {
     if (connected) {
       setTimeout(() => {
-        // window.close();
         navigate(AppRoutes.ChatBots);
       }, 2000);
     }
@@ -73,13 +75,13 @@ export const ChatBotsConnect: React.FC<IChatBotsConnectProps> = () => {
         <Card.Body>
           <Card.Title>Twitch Chat Connect</Card.Title>
 
-          {connected === false && (
+          {apiError && !connected && (
             <Alert variant="danger">
               There was an error connecting to Twitch. Please try again.
             </Alert>
           )}
 
-          {connected === true && (
+          {connected && (
             <Alert variant="success">
               You have successfully connected to Twitch.
             </Alert>

@@ -36,6 +36,7 @@ import ProfileTemplate from "./Template/Template";
 import EpisodeLinks from "./Links/Links";
 import AccordionWrapper from "../utils/AccordionWrapper";
 import ImageLister from "./ImageLister/ImageLister";
+import { ShowRunner } from "./ShowRunner/ShowRunner";
 
 export interface IEpisodeProfileProps {}
 
@@ -214,6 +215,7 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
   };
 
   const handleSubmit = async (): Promise<void> => {
+    console.log(217, "xxx xxx");
     try {
       const { data } = await httpService.put(
         `${process.env.REACT_APP_REST_API}episodes/${id}`,
@@ -401,10 +403,16 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
               </AccordionWrapper>
 
               <AccordionWrapper
+                eventKey={AccordionKeys.ShowRunner}
+                header="Show Runner"
+              >
+                <ShowRunner />
+              </AccordionWrapper>
+
+              <AccordionWrapper
                 eventKey={AccordionKeys.Delete}
                 header="Delete Episode"
               >
-                {" "}
                 <Button onClick={handleDeleteEpisode} variant="danger">
                   Delete this Episode
                 </Button>

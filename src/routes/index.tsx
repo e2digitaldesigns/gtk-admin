@@ -11,11 +11,17 @@ import ProtectedRoute from "./ProtectedRoute";
 import { Login } from "./../components/Login/Login";
 import { Controls } from "../components/Controls";
 import { ChatBots } from "../components/ChatBots";
+import { ShowRunner } from "../components/ShowRunner/ShowRunner";
 
 export const applicationRouter = createBrowserRouter([
   {
     path: "/",
     element: <Login />,
+    errorElement: <h1>error</h1>
+  },
+  {
+    path: AppRoutes.ShowRunner,
+    element: <ShowRunner />,
     errorElement: <h1>error</h1>
   },
   {

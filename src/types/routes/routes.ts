@@ -25,5 +25,7 @@ export enum AppRoutes {
   Controls = "/admin/podcast/controls",
 
   ChatBots = "/admin/chat-bots",
-  ChatBotsConnectTwitch = "/admin/chat-bots/connect-twitch"
+  ChatBotsConnectTwitch = "/admin/chat-bots/connect-twitch",
+
+  ShowRunner = "/public/show-runner/:id"
 }

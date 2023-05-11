@@ -295,6 +295,22 @@ export const EpisodeTopics: React.FC<ITopicProps> = ({
 
       <Row>
         <Col>
+          <Form.Group className="mb-3">
+            <Form.Label>Articles</Form.Label>
+
+            <Form.Control
+              size="sm"
+              name="articles"
+              onChange={handleChange}
+              type="text"
+              value={activeTopic?.articles}
+            />
+          </Form.Group>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
           <Button
             className="me-2"
             variant="primary"
