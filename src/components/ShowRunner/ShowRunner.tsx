@@ -2,8 +2,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import httpService from "../../utils/httpService";
 
-import { defaultEpisodeState, IEpisode } from "../../types";
-
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -11,22 +9,26 @@ import { Alert } from "react-bootstrap";
 
 export const ShowRunner: React.FC = () => {
   const { id } = useParams();
-  const [episodeState, setEpisodeState] =
-    React.useState<IEpisode>(defaultEpisodeState);
+  const [episodeState, setEpisodeState] = React.useState<any>({
+    airDate: "",
+    name: "",
+    number: 0,
+    topics: []
+  });
 
   React.useEffect(() => {
     let stillHere = true;
 
     const fetchData = async () => {
       const { data } = await httpService.get(
-        `${process.env.REACT_APP_REST_API}episodes/${id}`
+        `${process.env.REACT_APP_REST_API}shows/showRunner/${id}`
       );
 
-      const { episode } = data;
+      console.log(data);
 
       if (stillHere) {
         setEpisodeState({
-          ...episode
+          ...data
         });
       }
     };
@@ -64,12 +66,12 @@ export const ShowRunner: React.FC = () => {
             <p className="mb-0">Topics: {episodeState.topics.length}</p>
           </Alert>
 
-          {episodeState.topics?.map((topic, index: number) => (
+          {episodeState.topics?.map((topic: any, index: number) => (
             <Card className="mb-2">
               <Card.Body>
                 <Card.Title>{topic.name}</Card.Title>
                 <Card.Text>{topic.desc}</Card.Text>
-                {topic.articles && (
+                {topic.articles.trim() && topic.articles && (
                   <Card.Link href={topic.articles}>Article</Card.Link>
                 )}
               </Card.Body>
