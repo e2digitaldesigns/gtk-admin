@@ -7,6 +7,8 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { Alert } from "react-bootstrap";
 
+import * as Styled from "./ShowRunner.style";
+
 export const ShowRunner: React.FC = () => {
   const { id } = useParams();
   const [episodeState, setEpisodeState] = React.useState<any>({
@@ -41,17 +43,17 @@ export const ShowRunner: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // const imageParser = (image: string | undefined) => {
-  //   if (image) {
-  //     return process.env.REACT_APP_CLOUD_IMAGES + image;
-  //   }
+  const imageParser = (image: string | undefined) => {
+    if (image) {
+      return process.env.REACT_APP_CLOUD_IMAGES + image;
+    }
 
-  //   if (episodeState?.logo) {
-  //     return process.env.REACT_APP_CLOUD_IMAGES + episodeState.logo;
-  //   }
+    if (episodeState?.logo) {
+      return process.env.REACT_APP_CLOUD_IMAGES + episodeState.logo;
+    }
 
-  //   return "http://placehold.jp/400x220.png";
-  // };
+    return "http://placehold.jp/400x220.png";
+  };
 
   return (
     <>
@@ -67,13 +69,20 @@ export const ShowRunner: React.FC = () => {
           </Alert>
 
           {episodeState.topics?.map((topic: any, index: number) => (
-            <Card className="mb-2">
+            <Card className="mb-2" key={index}>
               <Card.Body>
-                <Card.Title>{topic.name}</Card.Title>
-                <Card.Text>{topic.desc}</Card.Text>
-                {topic.articles.trim() && topic.articles && (
-                  <Card.Link href={topic.articles}>Article</Card.Link>
-                )}
+                <Styled.TopicGrid>
+                  <Styled.ImageWrapper>
+                    <img src={imageParser(topic.img)} alt={topic.name} />
+                  </Styled.ImageWrapper>
+                  <div>
+                    <Styled.TopicName>{topic.name}</Styled.TopicName>
+                    <Card.Text>{topic.desc}</Card.Text>
+                    {topic.articles.trim() && topic.articles && (
+                      <Card.Link href={topic.articles}>Article</Card.Link>
+                    )}
+                  </div>
+                </Styled.TopicGrid>
               </Card.Body>
             </Card>
           ))}

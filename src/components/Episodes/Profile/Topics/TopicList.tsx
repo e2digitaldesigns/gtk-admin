@@ -9,11 +9,14 @@ import { IEpisodeTopic, ITemplate } from "../../../../types";
 import { sortTopics } from "../../utils/sortTopics";
 import * as Styled from "./Topic.style";
 import { TopicImageParser } from "../../utils/cloudImageParser";
+import _cloneDeep from "lodash/cloneDeep";
+import _findIndex from "lodash/findIndex";
 
 export interface IEpisodeProfileTopicsProps {
   episodeTopics: IEpisodeTopic[];
   handleActivateTopic: (id: string) => void;
   handleDeleteTopic: (id: string) => void;
+  handleOrderChange: any;
   templateState: ITemplate;
 }
 
@@ -21,13 +24,44 @@ export const EpisodeProfileTopics: React.FC<IEpisodeProfileTopicsProps> = ({
   episodeTopics,
   handleActivateTopic,
   handleDeleteTopic,
+  handleOrderChange,
   templateState
 }) => {
+  const dragDropRef = React.useRef<any>(null);
+
   const topicCount = episodeTopics.length;
 
   const showAdvancedOptions =
     templateState.topicType === "advanced" ||
     templateState.topicType === "video";
+
+  const handleDragStart = (e: React.DragEvent<HTMLDivElement>, _id: string) => {
+    e.dataTransfer.setData("id", _id);
+  };
+
+  const handleDragDrop = (e: React.DragEvent<HTMLDivElement>, _id: string) => {
+    const dragId = e.dataTransfer.getData("id");
+    if (dragId === _id) return;
+
+    const newTopics = _cloneDeep(episodeTopics);
+
+    const dragIndex = _findIndex(newTopics, (f: any) => f._id === dragId);
+    const dropIndex = _findIndex(newTopics, (f: any) => f._id === _id);
+
+    const dragTopic = newTopics[dragIndex];
+
+    if (dragIndex > dropIndex) {
+      newTopics.splice(dragIndex, 1);
+      newTopics.splice(dropIndex, 0, dragTopic);
+    }
+
+    if (dragIndex < dropIndex) {
+      newTopics.splice(dropIndex + 1, 0, dragTopic);
+      newTopics.splice(dragIndex, 1);
+    }
+
+    handleOrderChange(newTopics);
+  };
 
   return (
     <Col>
@@ -42,8 +76,16 @@ export const EpisodeProfileTopics: React.FC<IEpisodeProfileTopicsProps> = ({
           <ListGroup variant="flush">
             {sortTopics(episodeTopics).map((topic: IEpisodeTopic) => (
               <ListGroup.Item
+                draggable="true"
+                onDragStart={(e: React.DragEvent<HTMLDivElement>) =>
+                  handleDragStart(e, topic._id)
+                }
+                onDrop={(e: React.DragEvent<HTMLDivElement>) =>
+                  handleDragDrop(e, topic._id)
+                }
                 key={topic._id}
                 onClick={() => handleActivateTopic(topic._id)}
+                ref={dragDropRef}
               >
                 <Styled.TopicGrid showImage={showAdvancedOptions}>
                   {showAdvancedOptions && (

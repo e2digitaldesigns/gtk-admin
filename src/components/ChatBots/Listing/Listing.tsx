@@ -21,8 +21,6 @@ export const ChatBotsListing: React.FC<IChatBotsListingProps> = () => {
           `${process.env.REACT_APP_REST_API}twitch/isConnected`
         );
 
-        console.log(data);
-
         if (data.isConnected) {
           setAuthorized(true);
         }

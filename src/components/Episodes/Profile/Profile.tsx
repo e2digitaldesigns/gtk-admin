@@ -37,6 +37,7 @@ import EpisodeLinks from "./Links/Links";
 import AccordionWrapper from "../utils/AccordionWrapper";
 import ImageLister from "./ImageLister/ImageLister";
 import { ShowRunner } from "./ShowRunner/ShowRunner";
+import { sortAndNumberTopics } from "../utils/sortTopics";
 
 export interface IEpisodeProfileProps {}
 
@@ -183,8 +184,16 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
 
   const handleDeleteTopic = (id: string) => {
     const newState = _cloneDeep(episodeState);
-    newState.topics = newState.topics.filter(
-      (topicSt: IEpisodeTopic) => topicSt._id !== id
+
+    for (let i = 0; i < newState.topics.length; i++) {
+      if (newState.topics[i].parentId === id) {
+        newState.topics[i].parentId = "";
+        newState.topics[i].isChild = false;
+      }
+    }
+
+    newState.topics = sortAndNumberTopics(
+      newState.topics.filter((topicSt: IEpisodeTopic) => topicSt._id !== id)
     );
 
     setEpisodeState(newState);
@@ -196,7 +205,10 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
       (topicSt: IEpisodeTopic) => topicSt._id === topic._id
     );
 
-    newState.topics[index] = topic;
+    newState.topics.splice(index, 1);
+    newState.topics.splice(topic.order - 1, 0, topic);
+
+    newState.topics = sortAndNumberTopics(newState.topics);
     setEpisodeState(newState);
   };
 
@@ -215,7 +227,6 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
   };
 
   const handleSubmit = async (): Promise<void> => {
-    console.log(217, "xxx xxx");
     try {
       const { data } = await httpService.put(
         `${process.env.REACT_APP_REST_API}episodes/${id}`,
@@ -270,6 +281,12 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
           )
         : (newState.logo = "");
     }
+    setEpisodeState(newState);
+  };
+
+  const handleOrderChange = (topics: IEpisodeTopic[]) => {
+    const newState = _cloneDeep(episodeState);
+    newState.topics = sortAndNumberTopics(topics);
     setEpisodeState(newState);
   };
 
@@ -427,6 +444,7 @@ export const EpisodeProfile: React.FC<IEpisodeProfileProps> = () => {
           episodeTopics={episodeState.topics}
           handleActivateTopic={handleActivateTopic}
           handleDeleteTopic={handleDeleteTopic}
+          handleOrderChange={handleOrderChange}
           templateState={templateState}
         />
       )}

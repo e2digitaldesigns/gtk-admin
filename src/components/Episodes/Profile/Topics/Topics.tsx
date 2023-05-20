@@ -269,7 +269,7 @@ export const EpisodeTopics: React.FC<ITopicProps> = ({
             <Form.Group className="mb-3">
               <Form.Label>Parent</Form.Label>
               <Form.Select
-                disabled={activeTopic.isParent}
+                disabled={activeTopic.isParent || !activeTopic.isChild}
                 name="parentId"
                 onChange={handleChange}
                 size="sm"
@@ -296,7 +296,7 @@ export const EpisodeTopics: React.FC<ITopicProps> = ({
       <Row>
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label>Articles</Form.Label>
+            <Form.Label>Article</Form.Label>
 
             <Form.Control
               size="sm"

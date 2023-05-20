@@ -27,3 +27,33 @@ export const sortTopics = (topics: IEpisodeTopic[]) => {
 
   return finalSort;
 };
+
+export const sortAndNumberTopics = (topics: IEpisodeTopic[]) => {
+  let finalSort: IEpisodeTopic[] = [];
+  const initSort = topics;
+
+  for (let i = 0; i < initSort.length; i++) {
+    if (initSort[i].isChild === true || finalSort.includes(initSort[i])) {
+    } else if (initSort[i].isParent === true) {
+      finalSort.push(initSort[i]);
+
+      // eslint-disable-next-line array-callback-return
+      const childFilter = initSort.filter(
+        topic =>
+          topic.parentId === initSort[i]._id &&
+          topic.isChild === true &&
+          !finalSort.includes(topic)
+      );
+
+      finalSort.push(...childFilter);
+    } else {
+      finalSort.push(initSort[i]);
+    }
+  }
+
+  for (let i = 0; i < finalSort.length; i++) {
+    finalSort[i].order = i + 1;
+  }
+
+  return finalSort;
+};
