@@ -27,8 +27,6 @@ export const EpisodeProfileTopics: React.FC<IEpisodeProfileTopicsProps> = ({
   handleOrderChange,
   templateState
 }) => {
-  const dragDropRef = React.useRef<any>(null);
-
   const topicCount = episodeTopics.length;
 
   const showAdvancedOptions =
@@ -85,7 +83,6 @@ export const EpisodeProfileTopics: React.FC<IEpisodeProfileTopicsProps> = ({
                 }
                 key={topic._id}
                 onClick={() => handleActivateTopic(topic._id)}
-                ref={dragDropRef}
               >
                 <Styled.TopicGrid showImage={showAdvancedOptions}>
                   {showAdvancedOptions && (

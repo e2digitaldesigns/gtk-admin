@@ -2,7 +2,7 @@ import * as React from "react";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
+import { Button, InputGroup } from "react-bootstrap";
 import { IEpisodeTopic, ITemplate } from "../../../../types";
 
 import * as Styled from "./Topic.style";
@@ -68,14 +68,15 @@ export const EpisodeTopics: React.FC<ITopicProps> = ({
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement> | any
   ): void => {
+    if (!activeTopic) return;
+
     event.preventDefault();
     const { name, value } = event.target;
 
-    activeTopic &&
-      setActiveTopic({
-        ...activeTopic,
-        [name]: value === "true" ? true : value === "false" ? false : value
-      });
+    setActiveTopic({
+      ...activeTopic,
+      [name]: value === "true" ? true : value === "false" ? false : value
+    });
   };
 
   const handleSubmit = () => {
@@ -129,6 +130,34 @@ export const EpisodeTopics: React.FC<ITopicProps> = ({
           ...activeTopic,
           img: ""
         });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleVideoConversion = async (): Promise<void> => {
+    const videoRegEx = /^(https?:\/\/)?(www\.youtube\.com|youtu\.be)\/.+$/;
+
+    if (!activeTopic || !activeTopic?.video) return;
+    if (!videoRegEx.test(activeTopic.video)) return;
+
+    try {
+      const { data } = await httpService.post(
+        process.env.REACT_APP_AWS_VIDEO_API || "",
+        {
+          topicId: activeTopic._id,
+          videoUrl: activeTopic?.video
+        }
+      );
+
+      if (data?.body?.success) {
+        setActiveTopic({
+          ...activeTopic,
+          video: data?.body?.videoUrl
+        });
+      } else {
+        throw new Error();
       }
     } catch (error) {
       console.error(error);
@@ -305,6 +334,32 @@ export const EpisodeTopics: React.FC<ITopicProps> = ({
               type="text"
               value={activeTopic?.articles}
             />
+          </Form.Group>
+        </Col>
+      </Row>
+
+      <Row>
+        <Col>
+          <Form.Group className="mb-3">
+            <Form.Label>Video</Form.Label>
+            <InputGroup className="mb-3">
+              <Form.Control
+                size="sm"
+                name="video"
+                onChange={handleChange}
+                type="text"
+                value={activeTopic?.video || ""}
+              />
+
+              <Button
+                onClick={handleVideoConversion}
+                size="sm"
+                type="button"
+                variant="primary"
+              >
+                <span>sdfsf</span> Convert to Video
+              </Button>
+            </InputGroup>
           </Form.Group>
         </Col>
       </Row>

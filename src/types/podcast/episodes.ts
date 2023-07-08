@@ -25,6 +25,7 @@ export interface IEpisodeTopic {
   parentId: string | null;
   timer: number;
   articles: string;
+  video: string;
 }
 
 export interface IEpisode {
@@ -77,7 +78,8 @@ export const defaultEpisodeTopicState: IEpisodeTopic = {
   isChild: false,
   parentId: null,
   img: "",
-  articles: ""
+  articles: "",
+  video: ""
 };
 
 export enum AccordionKeys {
